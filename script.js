@@ -32,14 +32,10 @@
         showToast(`${newTheme === 'dark' ? 'Koyu Mod' : 'Aydınlık Mod'} Aktif!`);
     });
     
-    // Sayfa yüklendiğinde temayı yükle
     loadTheme();
 
-    // ========== DİĞER FONKSİYONLAR ==========
-    // changeDesign, flipCard, copyEmail, saveContact, shareCard, showToast...
-    // ... diğer fonksiyonlar aynı kalacak
-
 // ========== 3 TASARIM ARASINDA GEÇİŞ ==========
+
         // Ön ve arka yüz PNG'lerini buraya yaz!
         const frontDesigns = [
             'Png/Style-1.png',
@@ -101,26 +97,67 @@
         }
 
         // ========== KİŞİYİ KAYDET (.vcf) ==========
-        function saveContact() {
-            const vcf = `BEGIN:VCARD
+function saveContact() {
+    const vcf = `BEGIN:VCARD
 VERSION:3.0
 FN:Eslem Nur Çetin
-TITLE:Web Developer & Programmer
+TITLE:Theology Srudent & Web Developer
 EMAIL;TYPE=INTERNET:eslemnur-official@proton.me
 URL:https://eslem-nur.github.io/official/index.html
 END:VCARD`;
 
-            const blob = new Blob([vcf], { type: 'text/vcard;charset=utf-8' });
-            const url = URL.createObjectURL(blob);
-            const a = document.createElement('a');
-            a.href = url;
-            a.download = 'Eslem_Nur_Cetin.vcf';
-            a.click();
-            URL.revokeObjectURL(url);
-            
-            showToast('Kişi dosyası indirildi!');
+    try {
+        const blob = new Blob([vcf], { type: 'text/vcard;charset=utf-8' });
+        
+        // iOS & Android: Web Share API (Modern Cihazlar)
+        if (navigator.share) {
+            try {
+                // Dosyayı oluştur
+                const file = new File([blob], 'Eslem_Nur_Cetin.vcf', { type: 'text/vcard' });
+                
+                // Paylaşmayı dene
+                navigator.share({
+                    files: [file],
+                    title: 'Kişiyi Kaydet',
+                    text: 'İletişim bilgilerimi paylaş'
+                }).then(() => {
+                    console.log('Share successful');
+                }).catch((error) => {
+                    console.log('Share cancelled:', error);
+                    // Fallback: Dosyayı indir
+                    downloadVcf(blob);
+                });
+                
+                showToast('Paylaşım menüsü açıldı!');
+                return; // İndirmeyi engelle
+            } catch (shareError) {
+                console.log('Share API not available:', shareError);
+                // Hata olursa indir
+            }
         }
+        
+        // Fallback: Dosyayı İndir (Desktop & Eski Cihazlar)
+        downloadVcf(blob);
+        
+    } catch (error) {
+        console.error('VCF creation failed:', error);
+        showToast('Hata oluştu, tekrar deneyin!');
+    }
+}
 
+// ========== VCF DOSYASINI İNDİR ==========
+function downloadVcf(blob) {
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'Eslem_Nur_Cetin.vcf';
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+    
+    showToast('Kişi dosyası indirildi!');
+}
         // ========== PAYLAŞ ==========
         function shareCard() {
             const shareData = {
