@@ -1,315 +1,49 @@
-<!DOCTYPE html>
 <html lang="tr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="theme-color" content="#A06872">
+
+    <link rel="stylesheet" href="style.css">
+
     
     <title>Business Card | Eslem Nur Çetin</title>
     <meta name="description" content="Eslem Nur Çetin - theology Student & Web Developer Business Card">
     
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+  
+     <!-- PWA Manifest Ekleme -->
+    <link rel="apple-touch-icon" sizes="180x180" href="/Business-Card/PWA/png/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="/Business-Card/PWA/png/favicon-96x96.png" />
+    <link rel="manifest" href="/Business-Card/PWA/manifest/site.webmanifest" />
+    <meta name="theme-color" content="#000000" />
+    <link rel="icon" type="image/svg+xml" href="/Business-Card/PWA/svg/favicon.svg" />
+    <link rel="shortcut icon" href="/Business-Card/PWA/icon/favicon.ico" />
 
-        body {
-    min-height: 100vh;
-    background: linear-gradient(135deg, #F5E6E8 0%, #E6D5D8 50%, #D4C4C8 100%);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 20px;
-    font-family: 'Segoe UI', sans-serif;
-    gap: 25px;
-}
+    <!-- PWA Service Worker Kaydı -->
+    <script>
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+          navigator.serviceWorker.register('/Business-Card/PWA/js-files/sw.js', { scope: '/Business-Card/' })
+            .then(reg => console.log('Service Worker başarıyla kaydedildi!', reg.scope))
+            .catch(err => console.log('Service Worker kaydı başarısız:', err));
+        });
+      }
+    </script>
 
-        /* TASARIM SEÇİCİ */
-        .design-selector {
-            display: flex;
-            gap: 10px;
-        }
-
-        .design-dot {
-            width: 12px;
-            height: 12px;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.3);
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .design-dot.active {
-            background: #CC8E98;
-            transform: scale(1.3);
-        }
-
-        /* KART KAPSAYICISI */
-        .card-frame {
-            width: 100%;
-            max-width: 420px;
-            aspect-ratio: 85.6 / 54;
-            border-radius: 18px;
-            overflow: hidden;
-            position: relative;
-            box-shadow: 0 20px 60px rgba(160, 104, 114, 0.35);
-            perspective: 1000px;
-        }
-
-        /* İÇ KARTE (FLIP YAPAN KISIM) */
-        .card-inner {
-            width: 100%;
-            height: 100%;
-            position: relative;
-            transform-style: preserve-3d;
-            transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        .card-frame.is-flipped .card-inner {
-            transform: rotateY(180deg);
-        }
-
-        /* ÖN YÜZ */
-        .card-front {
-            position: absolute;
-            inset: 0;
-            backface-visibility: hidden;
-            border-radius: 18px;
-            overflow: hidden;
-        }
-
-        .card-front img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            display: block;
-        }
-
-        /* ARKA YÜZ (PNG + BUTONLAR) */
-        .card-back {
-            position: absolute;
-            inset: 0;
-            backface-visibility: hidden;
-            transform: rotateY(180deg);
-            border-radius: 18px;
-            overflow: hidden;
-        }
-
-        .card-back img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            display: block;
-        }
-
-        .card-back .back-overlay {
-            position: absolute;
-            inset: 0;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            gap: 18px;
-            padding: 25px;
-            /*background: rgba(160, 104, 114, 0.7);
-            backdrop-filter: blur(3px); */
-        }
-
-        /* PNG FADE EFEKTİ */
-        .card-inner.fade {
-            opacity: 0.6;
-        }
-
-        .overlay-actions {
-            position: absolute;
-            bottom: 12px;
-            right: 12px;
-            display: flex;
-            gap: 8px;
-            z-index: 10;
-        }
-
-        .mini-btn {
-            width: 44px;
-            height: 44px;
-            border-radius: 50%;
-            border: none;
-            background: rgba(255, 255, 255, 0.25);
-            color: white;
-            font-size: 1rem;
-            cursor: pointer;
-            backdrop-filter: blur(8px);
-            transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .mini-btn:hover {
-            background: linear-gradient(to right, #B76E79, #D398C6);
-            transform: translateY(-3px);
-            box-shadow: 0 6px 20px rgba(211, 152, 198, 0.5);
-        }
-
-        .flip-hint {
-            position: absolute;
-            top: 12px;
-            right: 12px;
-            font-size: 0.7rem;
-            color: rgba(255, 255, 255, 0.8);
-            background: rgba(0, 0, 0, 0.3);
-            padding: 4px 10px;
-            border-radius: 12px;
-            backdrop-filter: blur(5px);
-            z-index: 10;
-        }
-
-        /* ARKA ÜZERİNE GELEN BUTONLAR */
-
-.back-title {
-    font-size: 0.95rem;
-    font-weight: 600;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-    
-    background: linear-gradient(to right, 
-        #B76E79,  
-        #D398C6  
-    );
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
-    color: transparent;
-}
-
-        .quick-links {
-            display: flex;
-            gap: 12px;
-            flex-wrap: wrap;
-            justify-content: center;
-        }
-
-        .quick-link {
-    width: 48px;
-    height: 48px;
-    border-radius: 14px;
-    
-    /* Solid başlangıç */
-    background: rgba(255, 255, 255, 0.25);
-    
-    color: white;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1.2rem;
-    text-decoration: none;
-    transition: all 0.3s ease;
-    backdrop-filter: blur(5px);
-    border: 1px solid rgba(255, 255, 255, 0.3);
-}
-
-.quick-link:hover {
-    background: linear-gradient(to right, #B76E79, #D398C6);
-    transform: translateY(-3px);
-    box-shadow: 0 6px 20px rgba(211, 152, 198, 0.5);
-}
-      
-      /* ARKA YÜZDEKİ MINI DÖNDÜRME BUTONU */
-.back-flip-btn {
-    position: absolute;
-    bottom: 12px;
-    left: 12px;
-    width: 44px;
-    height: 44px;
-    border-radius: 50%;
-    border: none;
-    background: rgba(255, 255, 255, 0.25);
-    color: white;
-    font-size: 1rem;
-    cursor: pointer;
-    backdrop-filter: blur(8px);
-    transition: all 0.3s ease;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 10;
-}
-
-.back-flip-btn:hover {
-    background: linear-gradient(to right, #B76E79, #D398C6);
-    transform: translateY(-3px);
-    box-shadow: 0 6px 20px rgba(211, 152, 198, 0.5);
-}
-
-        /* AKSİYON ÇUBUĞU */
-        .action-bar {
-            display: flex;
-            gap: 10px;
-            flex-wrap: wrap;
-            justify-content: center;
-        }
-
-        .action-btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            padding: 12px 22px;
-            border-radius: 30px;
-            border: 2px solid #CC8E98;
-            background: transparent;
-            color: #CC8E98;
-            font-size: 0.9rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            text-decoration: none;
-        }
-
-        .action-btn.primary {
-            background: #A06872;
-            border-color: #A06872;
-            color: white;
-        }
-
-        .action-btn:hover {
-            background: #A06872;
-            border-color: #A06872;
-            color: white;
-            transform: translateY(-2px);
-        }
-
-        /* TOAST */
-        .toast {
-            position: fixed;
-            bottom: 30px;
-            left: 50%;
-            transform: translateX(-50%) translateY(100px);
-            background: #A06872;
-            color: white;
-            padding: 12px 24px;
-            border-radius: 30px;
-            font-size: 0.9rem;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            z-index: 999;
-            transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
-        }
-
-        .toast.show {
-            transform: translateX(-50%) translateY(0);
-        }
-    </style>
 </head>
+
+
 <body>
 
-    <!-- 3 TASARIM SEÇİCİ -->
+    <!-- TOP RIGHT CONTROLS -->
+    <div class="top-controls">
+        <button id="themeToggle" class="theme-toggle" aria-label="Temayı Değiştir">
+            <i class="fas fa-moon"></i>
+        </button>
+    </div>
+
+    <!-- TASARIM SEÇİCİ -->
     <div class="design-selector">
         <div class="design-dot active" onclick="changeDesign(0)" title="Tasarım 1"></div>
         <div class="design-dot" onclick="changeDesign(1)" title="Tasarım 2"></div>
@@ -384,117 +118,6 @@
         <i class="fas fa-check-circle"></i>
         <span id="toastMessage"></span>
     </div>
-
-    <script>
-        // ========== 3 TASARIM ARASINDA GEÇİŞ ==========
-        // Ön ve arka yüz PNG'lerini buraya yaz!
-        const frontDesigns = [
-            'Png/Style-1.png',
-            'Png/Style-2.png',
-            'Png/Style-3.png',
-            'Png/Style-4.png'
-        ];
-        
-        const backDesigns = [
-            'Png/Style-1-back.png',
-            'Png/Style-2-back.png',
-            'Png/Style-3-back.png',
-            'Png/Style-4-back.png'
-        ];
-        
-        let currentDesign = 0;
-
-        function changeDesign(index) {
-            const frontImg = document.getElementById('frontImage');
-            const backImg = document.getElementById('backImage');
-            const inner = document.getElementById('cardInner');
-            const dots = document.querySelectorAll('.design-dot');
-
-            // Yumuşak geçiş animasyonu
-            inner.classList.add('fade');
-
-            setTimeout(() => {
-                currentDesign = index;
-                frontImg.src = frontDesigns[index];
-                backImg.src = backDesigns[index];
-                dots.forEach((dot, i) => dot.classList.toggle('active', i === index));
-                inner.classList.remove('fade');
-            }, 300);
-        }
-
-        // ========== KART ÇEVİRME (FIX EDİLDİ) ==========
-        function flipCard() {
-            const frame = document.getElementById('cardFrame');
-            frame.classList.toggle('is-flipped');
-        }
-
-        // ========== EMAIL KOPYALA ==========
-        function copyEmail() {
-            const email = 'eslemnur-official@proton.me';
-            
-            if (navigator.clipboard) {
-                navigator.clipboard.writeText(email).then(() => {
-                    showToast('E-posta kopyalandı! ✓');
-                });
-            } else {
-                const tmp = document.createElement('input');
-                document.body.appendChild(tmp);
-                tmp.value = email;
-                tmp.select();
-                document.execCommand('copy');
-                document.body.removeChild(tmp);
-                showToast('E-posta kopyalandı! ✓');
-            }
-        }
-
-        // ========== KİŞİYİ KAYDET (.vcf) ==========
-        function saveContact() {
-            const vcf = `BEGIN:VCARD
-VERSION:3.0
-FN:Eslem Nur Çetin
-TITLE:Web Developer & Programmer
-EMAIL;TYPE=INTERNET:eslemnur-official@proton.me
-URL:https://eslem-nur.github.io/official/index.html
-END:VCARD`;
-
-            const blob = new Blob([vcf], { type: 'text/vcard;charset=utf-8' });
-            const url = URL.createObjectURL(blob);
-            const a = document.createElement('a');
-            a.href = url;
-            a.download = 'Eslem_Nur_Cetin.vcf';
-            a.click();
-            URL.revokeObjectURL(url);
-            
-            showToast('Kişi dosyası indirildi!');
-        }
-
-        // ========== PAYLAŞ ==========
-        function shareCard() {
-            const shareData = {
-                title: 'Eslem Nur Çetin - Web Developer',
-                text: 'Dijital iş kartıma göz atın!',
-                url: 'https://eslem-nur.github.io/Business-Card/'
-            };
-
-            if (navigator.share) {
-                navigator.share(shareData).catch(() => {});
-            } else {
-                navigator.clipboard.writeText(shareData.url)
-                    .then(() => showToast('Link kopyalandı! ✓'));
-            }
-        }
-
-        // ========== TOAST ==========
-        function showToast(message) {
-            const toast = document.getElementById('toast');
-            document.getElementById('toastMessage').textContent = message;
-            toast.classList.add('show');
-            
-            clearTimeout(toast.timer);
-            toast.timer = setTimeout(() => {
-                toast.classList.remove('show');
-            }, 2500);
-        }
-    </script>
+    <script src="script.js"></script>
 </body>
 </html>
