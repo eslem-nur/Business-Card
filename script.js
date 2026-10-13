@@ -450,3 +450,18 @@ document.addEventListener('DOMContentLoaded', function() {
   
   
 });
+
+// ===================================
+// BUTON TIKLAMALARINI AYIR (FLIP ENGEL)
+// ===================================
+
+document.addEventListener('DOMContentLoaded', function() {
+    // Tüm butonları seç
+    const buttons = document.querySelectorAll('.mini-btn, .back-flip-btn, .quick-link');
+    
+    buttons.forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            e.stopPropagation(); // Parent'a (cardFrame) geçme
+        });
+    });
+});
