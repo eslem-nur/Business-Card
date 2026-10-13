@@ -169,13 +169,22 @@
         }
 
         /* ARKA ÜZERİNE GELEN BUTONLAR */
-        .back-title {
-            color: linear-gradient(to right, #B76E79, #D398C6);
-            font-size: 0.95rem;
-            font-weight: 600;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-        }
+
+.back-title {
+    font-size: 0.95rem;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    
+    background: linear-gradient(to right, 
+        #B76E79,  
+        #D398C6  
+    );
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+}
 
         .quick-links {
             display: flex;
