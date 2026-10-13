@@ -1,0 +1,123 @@
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#A06872">
+
+    <link rel="stylesheet" href="style.css">
+
+    
+    <title>Visitenkarte | Eslem Nur Çetin</title>
+    <meta name="description" content="Eslem Nur Çetin - Theologiestudentin & Webentwicklerin Visitenkarte">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+     <!-- PWA Manifest Hinzufügen -->
+    <link rel="apple-touch-icon" sizes="180x180" href="/Business-Card/PWA/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="/Business-Card/PWA/favicon-96x96.png" />
+    <link rel="manifest" href="/Business-Card/PWA/site.webmanifest" />
+    <meta name="theme-color" content="#000000" />
+    <link rel="icon" type="image/svg+xml" href="/Business-Card/PWA/favicon.svg" />
+    <link rel="shortcut icon" href="/Business-Card/PWA/favicon.ico" />
+
+    <!-- PWA Service Worker Registrierung -->
+    <script>
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+          navigator.serviceWorker.register('/Business-Card/PWA/sw.js', { scope: '/Business-Card/' })
+            .then(reg => console.log('Service Worker erfolgreich registriert!', reg.scope))
+            .catch(err => console.log('Service Worker Registrierung fehlgeschlagen:', err));
+        });
+      }
+    </script>
+
+</head>
+
+
+<body>
+
+    <!-- TOP RIGHT CONTROLS -->
+    <div class="top-controls">
+        <button id="themeToggle" class="theme-toggle" aria-label="Theme wechseln">
+            <i class="fas fa-moon"></i>
+        </button>
+    </div>
+
+    <!-- DESIGN SELECTOR -->
+    <div class="design-selector">
+        <div class="design-dot active" onclick="changeDesign(0)" title="Design 1"></div>
+        <div class="design-dot" onclick="changeDesign(1)" title="Design 2"></div>
+        <div class="design-dot" onclick="changeDesign(2)" title="Design 3"></div>
+        <div class="design-dot" onclick="changeDesign(3)" title="Design 4"></div>
+    </div>
+
+    <!-- CARD -->
+    <div class="card-frame" id="cardFrame">
+        <!-- FLIP INNER LAYER -->
+        <div class="card-inner" id="cardInner">
+            
+            <!-- FRONT SIDE: Front Design -->
+            <div class="card-front">
+                <img src="Png/Style-1.png" alt="Visitenkarte Vorderseite" id="frontImage">
+                
+                <span class="flip-hint"><i class="fas fa-rotate"></i> Drehen</span>
+                
+                <div class="overlay-actions">
+                    <button class="mini-btn" onclick="copyEmail()" title="E-Mail kopieren">
+                        <i class="fas fa-envelope"></i>
+                    </button>
+                    <button class="mini-btn" onclick="flipCard()" title="Drehen">
+                        <i class="fas fa-rotate"></i>
+                    </button>
+                </div>
+            </div>
+            
+            <!-- BACK SIDE: Back Design + Buttons -->
+            <div class="card-back">
+                <img src="Png/Style-1-back.png" alt="Visitenkarte Rückseite" id="backImage">
+              
+              <button class="back-flip-btn" onclick="flipCard()" title="Vorderseite anzeigen">
+        <i class="fas fa-rotate-left"></i>
+    </button>
+                
+                <div class="back-overlay">
+                    <span class="back-title">Meine Verbindungen</span>
+                    
+                    <div class="quick-links">
+                        <a href="https://eslem-nur.github.io/official/index.html" target="_blank" rel="noopener noreferrer" class="quick-link" title="Portfolio">
+                            <i class="fas fa-user"></i>
+                        </a>
+                        <a href="https://github.com/eslem-nur" target="_blank" rel="noopener noreferrer" class="quick-link" title="GitHub">
+                            <i class="fab fa-github"></i>
+                        </a>
+                        
+                        <a href="http://linktr.ee/eslemnur" target="_blank" rel="noopener noreferrer" class="quick-link" title="Linktree">
+                            <i class="fas fa-link"></i>
+                        </a>
+                        <a href="mailto:eslemnur-official@proton.me" class="quick-link" title="E-Mail">
+                            <i class="fas fa-envelope"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ACTION BAR -->
+    <div class="action-bar">
+        <button class="action-btn primary" onclick="saveContact()">
+            <i class="fas fa-address-card"></i> Kontakt speichern
+        </button>
+        <button class="action-btn" onclick="shareCard()">
+            <i class="fas fa-share-nodes"></i> Teilen
+        </button>
+    </div>
+
+    <!-- TOAST -->
+    <div class="toast" id="toast">
+        <i class="fas fa-check-circle"></i>
+        <span id="toastMessage"></span>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

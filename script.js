@@ -1,5 +1,161 @@
-    // ========== TEMA TOGGLE ==========
+// ========== DİL AYARLARI & ÇEVİRİ SÖZLÜĞÜ ==========
+const translations = {
+    tr: {
+        themeToggle: 'Temayı Değiştir',
+        themeDark: 'Koyu Mod Aktif!',
+        themeLight: 'Aydınlık Mod Aktif!',
+        flipHint: 'Çevir',
+        connections: 'Bağlantılarım',
+        portfolio: 'Portfolyo',
+        github: 'GitHub',
+        linktree: 'Linktree',
+        email: 'Email',
+        saveContact: 'Kişiyi Kaydet',
+        share: 'Paylaş',
+        emailCopied: 'E-posta kopyalandı! ✓',
+        contactSaved: 'Kişi dosyası indirildi!',
+        linkCopied: 'Link kopyalandı! ✓',
+        shareMenu: 'Paylaşım menüsü açıldı!',
+        errorOccured: 'Hata oluştu, tekrar deneyin!',
+        contactTitle: 'Theology Student & Web Developer'
+    },
+    de: {
+        themeToggle: 'Theme wechseln',
+        themeDark: 'Dunkler Modus aktiv!',
+        themeLight: 'Helles Modus aktiv!',
+        flipHint: 'Drehen',
+        connections: 'Meine Verbindungen',
+        portfolio: 'Portfolio',
+        github: 'GitHub',
+        linktree: 'Linktree',
+        email: 'E-Mail',
+        saveContact: 'Kontakt speichern',
+        share: 'Teilen',
+        emailCopied: 'E-Mail kopiert! ✓',
+        contactSaved: 'Kontaktdatei heruntergeladen!',
+        linkCopied: 'Link kopiert! ✓',
+        shareMenu: 'Freigabemenü geöffnet!',
+        errorOccured: 'Fehler aufgetreten, bitte erneut versuchen!',
+        contactTitle: 'Theologiestudentin & Webentwicklerin'
+    },
+    fr: {
+        themeToggle: 'Changer le thème',
+        themeDark: 'Mode sombre activé!',
+        themeLight: 'Mode clair activé!',
+        flipHint: 'Retourner',
+        connections: 'Mes connexions',
+        portfolio: 'Portfolio',
+        github: 'GitHub',
+        linktree: 'Linktree',
+        email: 'E-mail',
+        saveContact: 'Enregistrer le contact',
+        share: 'Partager',
+        emailCopied: 'E-mail copié! ✓',
+        contactSaved: 'Fichier de contact téléchargé!',
+        linkCopied: 'Lien copié! ✓',
+        shareMenu: 'Menu de partage ouvert!',
+        errorOccured: 'Erreur survenue, veuillez réessayer!',
+        contactTitle: 'Étudiante en théologie & Développeuse web'
+    },
+    en: {
+        themeToggle: 'Toggle Theme',
+        themeDark: 'Dark Mode Active!',
+        themeLight: 'Light Mode Active!',
+        flipHint: 'Flip',
+        connections: 'My Connections',
+        portfolio: 'Portfolio',
+        github: 'GitHub',
+        linktree: 'Linktree',
+        email: 'Email',
+        saveContact: 'Save Contact',
+        share: 'Share',
+        emailCopied: 'Email copied! ✓',
+        contactSaved: 'Contact file downloaded!',
+        linkCopied: 'Link copied! ✓',
+        shareMenu: 'Share menu opened!',
+        errorOccured: 'An error occurred, please try again!',
+        contactTitle: 'Theology Student & Web Developer'
+    },
+    ar: {
+        themeToggle: 'تغيير المظهر',
+        themeDark: 'تم تفعيل الوضع الداكن!',
+        themeLight: 'تم تفعيل الفوض الفاتح!',
+        flipHint: 'اقلب',
+        connections: 'روابطي',
+        portfolio: 'المعرض',
+        github: 'جيت هب',
+        linktree: 'لينكتري',
+        email: 'البريد الإلكتروني',
+        saveContact: 'حفظ جهة الاتصال',
+        share: 'مشاركة',
+        emailCopied: 'تم نسخ البريد الإلكتروني! ✓',
+        contactSaved: 'تم تحميل ملف جهة الاتصال!',
+        linkCopied: 'تم نسخ الرابط! ✓',
+        shareMenu: 'تم فتح قائمة المشاركة!',
+        errorOccured: 'حدث خطأ، يرجى المحاولة مرة أخرى!',
+        contactTitle: 'طالبة علم اللاهوت ومطورة ويب'
+    }
+};
+
+// ========== DİL TESPİTİ ==========
+function getCurrentLanguage() {
+    const htmlLang = document.documentElement.lang || 'tr';
+    const validLangs = ['tr', 'de', 'fr', 'en', 'ar'];
+    return validLangs.includes(htmlLang) ? htmlLang : 'tr';
+}
+
+// ========== ÇEVİRİ YÜKLEME ==========
+function loadTranslations() {
+    const lang = getCurrentLanguage();
+    const t = translations[lang];
+    
+    // Toast elementini güncelle
+    const toast = document.getElementById('toast');
+    
+    // HTML başlıklarını güncelle (opsiyonel, gerekliyse)
+    document.title = `${t.portfolio} | Eslem Nur Çetin`;
+    
+    // Flip hint güncelle (ön yüz)
+    const flipHint = document.querySelector('.flip-hint');
+    if (flipHint) {
+        flipHint.innerHTML = `<i class="fas fa-rotate"></i> ${t.flipHint}`;
+    }
+    
+    // Back title güncelle (arka yüz overlay)
+    const backTitle = document.querySelector('.back-title');
+    if (backTitle) {
+        backTitle.textContent = t.connections;
+    }
+    
+    // Design selector dot title'ları güncelle
+    const designDots = document.querySelectorAll('.design-dot');
+    designDots.forEach((dot, index) => {
+        dot.setAttribute('title', `تصميم ${index + 1}`);
+    });
+    
+    // Arapça için RTL desteği
+    if (lang === 'ar') {
+        document.documentElement.dir = 'rtl';
+        
+        // Design dot'ların sırasını tersine çevir
+        const dotsContainer = document.querySelector('.design-selector');
+        if (dotsContainer) {
+            dotsContainer.style.flexDirection = 'row-reverse';
+        }
+    } else {
+        document.documentElement.dir = 'ltr';
+    }
+    
+    return t;
+}
+
+// ========== TEMA TOGGLE ==========
+function initThemeToggle() {
     const themeToggle = document.getElementById('themeToggle');
+    const t = translations[getCurrentLanguage()];
+    
+    // ARIA label güncelle
+    themeToggle.setAttribute('aria-label', t.themeToggle);
     
     // LocalStorage'dan tema yükle
     function loadTheme() {
@@ -24,125 +180,144 @@
     themeToggle.addEventListener('click', () => {
         const currentTheme = document.documentElement.getAttribute('data-theme');
         const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+        const currentT = translations[getCurrentLanguage()];
         
         document.documentElement.setAttribute('data-theme', newTheme);
         localStorage.setItem('theme', newTheme);
         updateThemeIcon(newTheme);
         
-        showToast(`${newTheme === 'dark' ? 'Koyu Mod' : 'Aydınlık Mod'} Aktif!`);
+        showToast(`${newTheme === 'dark' ? currentT.themeDark : currentT.themeLight}`);
     });
     
     loadTheme();
+}
 
 // ========== 3 TASARIM ARASINDA GEÇİŞ ==========
+function initDesignSelector() {
+    // Ön ve arka yüz PNG'lerini buraya yaz!
+    const frontDesigns = [
+        'Png/Style-1.png',
+        'Png/Style-2.png',
+        'Png/Style-3.png',
+        'Png/Style-4.png'
+    ];
+    
+    const backDesigns = [
+        'Png/Style-1-back.png',
+        'Png/Style-2-back.png',
+        'Png/Style-3-back.png',
+        'Png/Style-4-back.png'
+    ];
+    
+    let currentDesign = 0;
 
-        // Ön ve arka yüz PNG'lerini buraya yaz!
-        const frontDesigns = [
-            'Png/Style-1.png',
-            'Png/Style-2.png',
-            'Png/Style-3.png',
-            'Png/Style-4.png'
-        ];
+    window.changeDesign = function(index) {
+        const frontImg = document.getElementById('frontImage');
+        const backImg = document.getElementById('backImage');
+        const inner = document.getElementById('cardInner');
+        const dots = document.querySelectorAll('.design-dot');
+
+        // Yumuşak geçiş animasyonu
+        inner.classList.add('fade');
+
+        setTimeout(() => {
+            currentDesign = index;
+            frontImg.src = frontDesigns[index];
+            backImg.src = backDesigns[index];
+            dots.forEach((dot, i) => dot.classList.toggle('active', i === index));
+            inner.classList.remove('fade');
+        }, 300);
+    };
+}
+
+// ========== KART ÇEVİRME ==========
+function initCardFlip() {
+    window.flipCard = function() {
+        const frame = document.getElementById('cardFrame');
+        frame.classList.toggle('is-flipped');
+    };
+}
+
+// ========== EMAIL KOPYALA ==========
+function initCopyEmail() {
+    const email = 'eslemnur-official@proton.me';
+    
+    window.copyEmail = function() {
+        const t = translations[getCurrentLanguage()];
         
-        const backDesigns = [
-            'Png/Style-1-back.png',
-            'Png/Style-2-back.png',
-            'Png/Style-3-back.png',
-            'Png/Style-4-back.png'
-        ];
-        
-        let currentDesign = 0;
-
-        function changeDesign(index) {
-            const frontImg = document.getElementById('frontImage');
-            const backImg = document.getElementById('backImage');
-            const inner = document.getElementById('cardInner');
-            const dots = document.querySelectorAll('.design-dot');
-
-            // Yumuşak geçiş animasyonu
-            inner.classList.add('fade');
-
-            setTimeout(() => {
-                currentDesign = index;
-                frontImg.src = frontDesigns[index];
-                backImg.src = backDesigns[index];
-                dots.forEach((dot, i) => dot.classList.toggle('active', i === index));
-                inner.classList.remove('fade');
-            }, 300);
+        if (navigator.clipboard) {
+            navigator.clipboard.writeText(email).then(() => {
+                showToast(t.emailCopied);
+            }).catch(() => {
+                fallbackCopy(email, t.emailCopied);
+            });
+        } else {
+            fallbackCopy(email, t.emailCopied);
         }
-
-        // ========== KART ÇEVİRME (FIX EDİLDİ) ==========
-        function flipCard() {
-            const frame = document.getElementById('cardFrame');
-            frame.classList.toggle('is-flipped');
+    };
+    
+    function fallbackCopy(emailText, successMessage) {
+        const tmp = document.createElement('input');
+        document.body.appendChild(tmp);
+        tmp.value = emailText;
+        tmp.select();
+        try {
+            document.execCommand('copy');
+            showToast(successMessage);
+        } catch (err) {
+            console.error('Copy failed:', err);
         }
+        document.body.removeChild(tmp);
+    }
+}
 
-        // ========== EMAIL KOPYALA ==========
-        function copyEmail() {
-            const email = 'eslemnur-official@proton.me';
-            
-            if (navigator.clipboard) {
-                navigator.clipboard.writeText(email).then(() => {
-                    showToast('E-posta kopyalandı! ✓');
-                });
-            } else {
-                const tmp = document.createElement('input');
-                document.body.appendChild(tmp);
-                tmp.value = email;
-                tmp.select();
-                document.execCommand('copy');
-                document.body.removeChild(tmp);
-                showToast('E-posta kopyalandı! ✓');
-            }
-        }
-
-        // ========== KİŞİYİ KAYDET (.vcf) ==========
-function saveContact() {
-    const vcf = `BEGIN:VCARD
+// ========== KİŞİYİ KAYDET (.vcf) ==========
+function initSaveContact() {
+    const lang = getCurrentLanguage();
+    const t = translations[lang];
+    
+    window.saveContact = function() {
+        const vcf = `BEGIN:VCARD
 VERSION:3.0
 FN:Eslem Nur Çetin
-TITLE:Theology Srudent & Web Developer
+TITLE:${t.contactTitle}
 EMAIL;TYPE=INTERNET:eslemnur-official@proton.me
 URL:https://eslem-nur.github.io/official/index.html
 END:VCARD`;
 
-    try {
-        const blob = new Blob([vcf], { type: 'text/vcard;charset=utf-8' });
-        
-        // iOS & Android: Web Share API (Modern Cihazlar)
-        if (navigator.share) {
-            try {
-                // Dosyayı oluştur
-                const file = new File([blob], 'Eslem_Nur_Cetin.vcf', { type: 'text/vcard' });
-                
-                // Paylaşmayı dene
-                navigator.share({
-                    files: [file],
-                    title: 'Kişiyi Kaydet',
-                    text: 'İletişim bilgilerimi paylaş'
-                }).then(() => {
-                    console.log('Share successful');
-                }).catch((error) => {
-                    console.log('Share cancelled:', error);
-                    // Fallback: Dosyayı indir
-                    downloadVcf(blob);
-                });
-                
-                showToast('Paylaşım menüsü açıldı!');
-                return; // İndirmeyi engelle
-            } catch (shareError) {
-                console.log('Share API not available:', shareError);
-                // Hata olursa indir
+        try {
+            const blob = new Blob([vcf], { type: 'text/vcard;charset=utf-8' });
+            
+            // iOS & Android: Web Share API (Modern Cihazlar)
+            if (navigator.share) {
+                try {
+                    const file = new File([blob], 'Eslem_Nur_Cetin.vcf', { type: 'text/vcard' });
+                    
+                    navigator.share({
+                        files: [file],
+                        title: 'Eslem Nur Çetin',
+                        text: t.share
+                    }).then(() => {
+                        console.log('Share successful');
+                    }).catch((error) => {
+                        console.log('Share cancelled:', error);
+                        downloadVcf(blob);
+                    });
+                    
+                    showToast(t.shareMenu);
+                    return;
+                } catch (shareError) {
+                    console.log('Share API not available:', shareError);
+                }
             }
+            
+            downloadVcf(blob);
+            
+        } catch (error) {
+            console.error('VCF creation failed:', error);
+            showToast(t.errorOccured);
         }
-        
-        // Fallback: Dosyayı İndir (Desktop & Eski Cihazlar)
-        downloadVcf(blob);
-        
-    } catch (error) {
-        console.error('VCF creation failed:', error);
-        showToast('Hata oluştu, tekrar deneyin!');
-    }
+    };
 }
 
 // ========== VCF DOSYASINI İNDİR ==========
@@ -156,32 +331,63 @@ function downloadVcf(blob) {
     document.body.removeChild(a);
     URL.revokeObjectURL(url);
     
-    showToast('Kişi dosyası indirildi!');
+    const t = translations[getCurrentLanguage()];
+    showToast(t.contactSaved);
 }
-        // ========== PAYLAŞ ==========
-        function shareCard() {
-            const shareData = {
-                title: 'Eslem Nur Çetin - Web Developer',
-                text: 'Dijital iş kartıma göz atın!',
-                url: 'https://eslem-nur.github.io/Business-Card/'
-            };
 
-            if (navigator.share) {
-                navigator.share(shareData).catch(() => {});
-            } else {
-                navigator.clipboard.writeText(shareData.url)
-                    .then(() => showToast('Link kopyalandı! ✓'));
-            }
-        }
+// ========== PAYLAŞ ==========
+function initShareCard() {
+    const t = translations[getCurrentLanguage()];
+    
+    window.shareCard = function() {
+        const shareData = {
+            title: 'Eslem Nur Çetin',
+            text: t.share,
+            url: 'https://eslem-nur.github.io/Business-Card/'
+        };
 
-        // ========== TOAST ==========
-        function showToast(message) {
-            const toast = document.getElementById('toast');
-            document.getElementById('toastMessage').textContent = message;
-            toast.classList.add('show');
-            
-            clearTimeout(toast.timer);
-            toast.timer = setTimeout(() => {
-                toast.classList.remove('show');
-            }, 2500);
+        if (navigator.share) {
+            navigator.share(shareData).catch(() => {});
+        } else {
+            navigator.clipboard.writeText(shareData.url)
+                .then(() => showToast(t.linkCopied))
+                .catch(() => {});
         }
+    };
+}
+
+// ========== TOAST ==========
+function showToast(message) {
+    const toast = document.getElementById('toast');
+    if (!toast) return;
+    
+    const toastMsg = document.getElementById('toastMessage');
+    if (!toastMsg) return;
+    
+    toastMsg.textContent = message;
+    toast.classList.add('show');
+    
+    clearTimeout(toast.timer);
+    toast.timer = setTimeout(() => {
+        toast.classList.remove('show');
+    }, 2500);
+}
+
+// ========== SAYFA YÜKLENDİĞİNDE BAŞLAT ==========
+document.addEventListener('DOMContentLoaded', function() {
+    // Dil yüklemesi ilk yapılmalı
+    loadTranslations();
+    
+    // Tüm fonksiyonları başlat
+    initThemeToggle();
+    initDesignSelector();
+    initCardFlip();
+    initCopyEmail();
+    initSaveContact();
+    initShareCard();
+});
+
+// ========== HATA KAPSYONU ==========
+window.addEventListener('error', function(e) {
+    console.error('Global error:', e.error);
+});

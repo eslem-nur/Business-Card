@@ -404,3 +404,53 @@ body {
         font-size: 1.1rem;
     }
 }
+
+/* ================================
+   RTL SUPPORT FOR ARABIC
+   ================================ */
+[dir="rtl"] .top-controls {
+    right: auto;
+    left: 20px;
+}
+
+[dir="rtl"] .overlay-actions {
+    right: auto;
+    left: 12px;
+}
+
+[dir="rtl"] .back-flip-btn {
+    left: auto;
+    right: 12px;
+}
+
+[dir="rtl"] .flip-hint {
+    right: auto;
+    left: 12px;
+}
+
+[dir="rtl"] .design-dot {
+    transform: scaleX(-1);
+}
+
+[dir="rtl"] .theme-toggle:hover {
+    transform: rotate(-15deg);
+}
+
+/* Gradient reversal for RTL */
+[dir="rtl"] .back-title,
+[dir="rtl"] .mini-btn:hover,
+[dir="rtl"] .quick-link:hover,
+[dir="rtl"] .back-flip-btn:hover {
+    background: linear-gradient(to left, #B76E79, #D398C6);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+[dir="rtl"] .toast {
+    transform: translateX(50%) translateY(100px);
+}
+
+[dir="rtl"] .toast.show {
+    transform: translateX(50%) translateY(0);
+}
