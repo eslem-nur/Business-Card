@@ -1,143 +1,128 @@
 <html lang="tr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <meta name="theme-color" content="#A06872">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#A06872">
 
-    <link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="style.css">
 
-    
-    <title>Business Card | Eslem Nur Çetin</title>
-    <meta name="description" content="Eslem Nur Çetin - Theology Student & Web Developer Business Card">
-    
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  
-     <!-- PWA Manifest Ekleme -->
+
+<title>Business Card | Eslem Nur Çetin</title>
+<meta name="description" content="Eslem Nur Çetin - theology Student & Web Developer Business Card">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+<!-- PWA Manifest Ekleme -->
+    <link rel="apple-touch-icon" sizes="180x180" href="/Business-Card/PWA/png/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="/Business-Card/PWA/png/favicon-96x96.png" />
+    <link rel="manifest" href="/Business-Card/PWA/manifest/site.webmanifest" />
     <link rel="apple-touch-icon" sizes="180x180" href="/Business-Card/PWA/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="96x96" href="/Business-Card/PWA/favicon-96x96.png" />
     <link rel="manifest" href="/Business-Card/PWA/site.webmanifest" />
-    <meta name="theme-color" content="#000000" />
+<meta name="theme-color" content="#000000" />
+    <link rel="icon" type="image/svg+xml" href="/Business-Card/PWA/svg/favicon.svg" />
+    <link rel="shortcut icon" href="/Business-Card/PWA/icon/favicon.ico" />
     <link rel="icon" type="image/svg+xml" href="/Business-Card/PWA/favicon.svg" />
     <link rel="shortcut icon" href="/Business-Card/PWA/favicon.ico" />
 
-    <!-- PWA Service Worker Kaydı -->
-    <script>
-      if ('serviceWorker' in navigator) {
-        window.addEventListener('load', () => {
+<!-- PWA Service Worker Kaydı -->
+<script>
+if ('serviceWorker' in navigator) {
+window.addEventListener('load', () => {
+          navigator.serviceWorker.register('/Business-Card/PWA/js-files/sw.js', { scope: '/Business-Card/' })
           navigator.serviceWorker.register('/Business-Card/PWA/sw.js', { scope: '/Business-Card/' })
-            .then(reg => console.log('Service Worker başarıyla kaydedildi!', reg.scope))
-            .catch(err => console.log('Service Worker kaydı başarısız:', err));
-        });
-      }
-    </script>
+.then(reg => console.log('Service Worker başarıyla kaydedildi!', reg.scope))
+.catch(err => console.log('Service Worker kaydı başarısız:', err));
+});
+}
+</script>
 
 </head>
 
 
 <body>
 
-    <!-- TOP RIGHT CONTROLS -->
-    <div class="top-controls">
-        <button id="themeToggle" class="theme-toggle" aria-label="Temayı Değiştir">
-            <i class="fas fa-moon"></i>
-        </button>
-    </div>
+<!-- TOP RIGHT CONTROLS -->
+<div class="top-controls">
+<button id="themeToggle" class="theme-toggle" aria-label="Temayı Değiştir">
+<i class="fas fa-moon"></i>
+</button>
+</div>
 
-    <!-- TASARIM SEÇİCİ -->
-    <div class="design-selector">
-        <div class="design-dot active" onclick="changeDesign(0)" title="Tasarım 1"></div>
-        <div class="design-dot" onclick="changeDesign(1)" title="Tasarım 2"></div>
-        <div class="design-dot" onclick="changeDesign(2)" title="Tasarım 3"></div>
-        <div class="design-dot" onclick="changeDesign(3)" title="Tasarım 4"></div>
-    </div>
+<!-- TASARIM SEÇİCİ -->
+<div class="design-selector">
+<div class="design-dot active" onclick="changeDesign(0)" title="Tasarım 1"></div>
+<div class="design-dot" onclick="changeDesign(1)" title="Tasarım 2"></div>
+<div class="design-dot" onclick="changeDesign(2)" title="Tasarım 3"></div>
+<div class="design-dot" onclick="changeDesign(3)" title="Tasarım 4"></div>
+</div>
 
-    <!-- KART -->
-    <div class="card-frame" id="cardFrame">
-        <!-- FLIP İÇİ KATMANI -->
-        <div class="card-inner" id="cardInner">
-            
-            <!-- ÖN YÜZ: Ön Tasarım -->
-            <div class="card-front">
-                <img src="Png/Style-1.png" alt="Business Card Ön" id="frontImage">
-                
-                <span class="flip-hint"><i class="fas fa-rotate"></i> Çevir</span>
-                
-             <div class="overlay-actions">
-    <!-- YENİ FLIP BUTONU -->
-    <div class="flip-trigger-btn" onclick="flipCard()" title="Kartı Çevir">
-        <i class="fas fa-rotate"></i>
-        <span class="flip-text">Çevir</span>
-    </div>
-    
-    <!-- Eski butonlar kalabilir -->
-    <button class="mini-btn" onclick="copyEmail()" title="Email Kopyala">
-        <i class="fas fa-envelope"></i>
-    </button>
-</div
-            </div>
-            
-            <!-- ARKA YÜZ: Arka Tasarım + Butonlar -->
-            <div class="card-back">
-                <img src="Png/Style-1-back.png" alt="Business Card Arka" id="backImage">
-              
-          <!--    <button class="back-flip-btn" onclick="flipCard()" title="Ön Yüzü Göster">
-        <i class="fas fa-rotate-left"></i>
-    </button> -->
-                
-                <div class="back-overlay">
-                    <span class="back-title">Bağlantılarım</span>
-                    
-                    <div class="quick-links">
-                        <a href="https://eslem-nur.github.io/official/index.html" target="_blank" rel="noopener noreferrer" class="quick-link" title="Portfolyo">
-                            <i class="fas fa-user"></i>
-                        </a>
-                        <a href="https://github.com/eslem-nur" target="_blank" rel="noopener noreferrer" class="quick-link" title="GitHub">
-                            <i class="fab fa-github"></i>
-                        </a>
-                        
-                        <a href="http://linktr.ee/eslemnur" target="_blank" rel="noopener noreferrer" class="quick-link" title="Linktree">
-                            <i class="fas fa-link"></i>
-                        </a>
-                        <a href="mailto:eslemnur-official@proton.me" class="quick-link" title="Email">
-                            <i class="fas fa-envelope"></i>
-                        </a>
-                      
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+<!-- KART -->
+<div class="card-frame" id="cardFrame">
+<!-- FLIP İÇİ KATMANI -->
+<div class="card-inner" id="cardInner">
 
-    <!-- AKSİYON ÇUBUĞU -->
-    <div class="action-bar">
-        <button class="action-btn primary" onclick="saveContact()">
-            <i class="fas fa-address-card"></i> Kişiyi Kaydet
-        </button>
-        <button class="action-btn" onclick="shareCard()">
-            <i class="fas fa-share-nodes"></i> Paylaş
-        </button>
-    </div>
+<!-- ÖN YÜZ: Ön Tasarım -->
+<div class="card-front">
+<img src="Png/Style-1.png" alt="Business Card Ön" id="frontImage">
 
-    <!-- TOAST -->
-    <div class="toast" id="toast">
-        <i class="fas fa-check-circle"></i>
-        <span id="toastMessage"></span>
-    </div>
-    <script src="script.js"></script>
-                      
-                      <script>
-// Mobilde resim kontrolü
-window.addEventListener('load', () => {
-    const frontImg = document.getElementById('frontImage');
-    console.log('Resim yolu:', frontImg?.src);
-    
-    const testImg = new Image();
-    testImg.onload = () => console.log('✅ Resim yüklendi');
-    testImg.onerror = () => console.error('❌ Resim bulunamadı!');
-    testImg.src = frontImg?.src;
-});
-</script>
+<span class="flip-hint"><i class="fas fa-rotate"></i> Çevir</span>
+
+<div class="overlay-actions">
+<button class="mini-btn" onclick="copyEmail()" title="Email Kopyala">
+<i class="fas fa-envelope"></i>
+</button>
+<button class="mini-btn" onclick="flipCard()" title="Çevir">
+<i class="fas fa-rotate"></i>
+</button>
+</div>
+</div>
+
+<!-- ARKA YÜZ: Arka Tasarım + Butonlar -->
+<div class="card-back">
+<img src="Png/Style-1-back.png" alt="Business Card Arka" id="backImage">
+
+<button class="back-flip-btn" onclick="flipCard()" title="Ön Yüzü Göster">
+<i class="fas fa-rotate-left"></i>
+</button>
+
+<div class="back-overlay">
+<span class="back-title">Bağlantılarım</span>
+
+<div class="quick-links">
+<a href="https://eslem-nur.github.io/official/index.html" target="_blank" rel="noopener noreferrer" class="quick-link" title="Portfolyo">
+<i class="fas fa-user"></i>
+</a>
+<a href="https://github.com/eslem-nur" target="_blank" rel="noopener noreferrer" class="quick-link" title="GitHub">
+<i class="fab fa-github"></i>
+</a>
+
+<a href="http://linktr.ee/eslemnur" target="_blank" rel="noopener noreferrer" class="quick-link" title="Linktree">
+<i class="fas fa-link"></i>
+</a>
+<a href="mailto:eslemnur-official@proton.me" class="quick-link" title="Email">
+<i class="fas fa-envelope"></i>
+</a>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+<!-- AKSİYON ÇUBUĞU -->
+<div class="action-bar">
+<button class="action-btn primary" onclick="saveContact()">
+<i class="fas fa-address-card"></i> Kişiyi Kaydet
+</button>
+<button class="action-btn" onclick="shareCard()">
+<i class="fas fa-share-nodes"></i> Paylaş
+</button>
+</div>
+
+<!-- TOAST -->
+<div class="toast" id="toast">
+<i class="fas fa-check-circle"></i>
+<span id="toastMessage"></span>
+</div>
+<script src="script.js"></script>
 </body>
-</html>

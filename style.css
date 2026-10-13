@@ -1,518 +1,469 @@
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+margin: 0;
+padding: 0;
+box-sizing: border-box;
 }
 
 /* ================================
-   CSS VARIABLES (LIGHT MODE DEFAULT)
-   ================================ */
+  CSS VARIABLES (LIGHT MODE DEFAULT)
+  ================================ */
 :root {
-    --primary-color: #A06872;
-    --primary-dark: #8E5A65;
-    --primary-light: #CC8E98;
-    --secondary-color: #FDF5E6;
-    --accent-color: #9E7F7F;
-    --bg-color: #FFF9F9;
-    --card-bg: #FFFFFF;
-    --text-color: #8E5A65;
-    --text-light: #8D6E63;
-    --text-muted: #A89080;
-    --border-color: rgba(255, 255, 255, 0.3);
-    --note-bg: rgba(255, 255, 255, 0.25);
-    --soft-shadow: 0 8px 25px rgba(160, 104, 114, 0.2);
+--primary-color: #A06872;
+--primary-dark: #8E5A65;
+--primary-light: #CC8E98;
+--secondary-color: #FDF5E6;
+--accent-color: #9E7F7F;
+--bg-color: #FFF9F9;
+--card-bg: #FFFFFF;
+--text-color: #8E5A65;
+--text-light: #8D6E63;
+--text-muted: #A89080;
+--border-color: rgba(255, 255, 255, 0.3);
+--note-bg: rgba(255, 255, 255, 0.25);
+--soft-shadow: 0 8px 25px rgba(160, 104, 114, 0.2);
 }
 
 /* ================================
-   DARK MODE
-   ================================ */
+  DARK MODE
+  ================================ */
 [data-theme="dark"] {
-    --primary-color: #CC8E98;
-    --primary-dark: #A06872;
-    --primary-light: #E0A4AC;
-    --secondary-color: #2D2D2D;
-    --accent-color: #C0A0A0;
-    --bg-color: #1A1A1A;
-    --card-bg: #252525;
-    --text-color: #8E5A65;
-    --text-light: #B0B0B0;
-    --text-muted: #808080;
-    --border-color: rgba(255, 255, 255, 0.3);
-    --note-bg: rgba(255, 255, 255, 0.25);
-    --soft-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+--primary-color: #CC8E98;
+--primary-dark: #A06872;
+--primary-light: #E0A4AC;
+--secondary-color: #2D2D2D;
+--accent-color: #C0A0A0;
+--bg-color: #1A1A1A;
+--card-bg: #252525;
+--text-color: #8E5A65;
+--text-light: #B0B0B0;
+--text-muted: #808080;
+--border-color: rgba(255, 255, 255, 0.3);
+--note-bg: rgba(255, 255, 255, 0.25);
+--soft-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
 }
 
 /* ================================
-   BODY & TRANSITIONS
-   ================================ */
+  BODY & TRANSITIONS
+  ================================ */
 * {
-    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
 }
 
 body {
-    min-height: 100vh;
-    background: var(--bg-color);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 20px;
-    font-family: 'Segoe UI', sans-serif;
-    gap: 25px;
-    padding-top: env(safe-area-inset-top);
-    padding-bottom: env(safe-area-inset-bottom);
+min-height: 100vh;
+background: var(--bg-color);
+display: flex;
+flex-direction: column;
+align-items: center;
+justify-content: center;
+padding: 20px;
+font-family: 'Segoe UI', sans-serif;
+gap: 25px;
 }
 
 /* ================================
-   TOP CONTROLS (THEME TOGGLE)
-   ================================ */
+  TOP CONTROLS (THEME TOGGLE)
+  ================================ */
 .top-controls {
-    position: fixed;
-    top: 20px;
-    right: 20px;
-    z-index: 1000;
+position: fixed;
+top: 20px;
+right: 20px;
+z-index: 1000;
 }
 
 .theme-toggle {
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    border: 2px solid var(--border-color);
-    background: var(--card-bg);
-    color: var(--text-color);
-    font-size: 1.3rem;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: all 0.3s ease;
-    box-shadow: 0 4px 15px var(--soft-shadow);
+width: 50px;
+height: 50px;
+border-radius: 50%;
+border: 2px solid var(--border-color);
+background: var(--card-bg);
+color: var(--text-color);
+font-size: 1.3rem;
+cursor: pointer;
+display: flex;
+align-items: center;
+justify-content: center;
+transition: all 0.3s ease;
+box-shadow: 0 4px 15px var(--soft-shadow);
 }
 
 .theme-toggle:hover {
-    background: var(--primary-color);
-    color: white;
-    border-color: var(--primary-color);
-    transform: rotate(15deg);
+background: var(--primary-color);
+color: white;
+border-color: var(--primary-color);
+transform: rotate(15deg);
 }
 
 /* ================================
-   DESIGN SELECTOR
-   ================================ */
+  DESIGN SELECTOR
+  ================================ */
 .design-selector {
-    display: flex;
-    gap: 10px;
+display: flex;
+gap: 10px;
 }
 
 .design-dot {
-    width: 12px;
-    height: 12px;
-    border-radius: 50%;
-    background: #9E7F7F;
-    cursor: pointer;
-    transition: all 0.3s ease;
+width: 12px;
+height: 12px;
+border-radius: 50%;
+background: #9E7F7F;
+cursor: pointer;
+transition: all 0.3s ease;
 }
 
 .design-dot.active {
-    background: var(--primary-light);
-    transform: scale(1.3);
+background: var(--primary-light);
+transform: scale(1.3);
 }
 
 /* ================================
-   CARD FRAME
-   ================================ */
-/* ===================================
-   KART YAPISI (BASİT - GARANTİLİ)
-   =================================== */
-
+  CARD FRAME
+  ================================ */
 .card-frame {
-    width: 100%;
-    max-width: 420px;
-    /* İkilisi birden: Modern tarayıcıda aspect-ratio, eskiyse padding-bottom */
-    aspect-ratio: 85.6 / 54;
-    height: auto;
-    padding-bottom: 0; /* Padding-bottom'u sıfırla, aspect-ratio kullan */
-    
-    position: relative;
-    border-radius: 18px;
-    overflow: hidden;
-    box-shadow: 0 20px 60px rgba(160, 104, 114, 0.35);
-    
-    /* Büyük ekranda maksimum boyut sınırı (isteğe bağlı) */
-    max-height: 400px;
+width: 100%;
+max-width: 420px;
+aspect-ratio: 85.6 / 54;
+border-radius: 18px;
+overflow: hidden;
+position: relative;
+box-shadow: 0 20px 60px rgba(160, 104, 114, 0.35);
+perspective: 1000px;
 }
 
 .card-inner {
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    inset: 0;
+width: 100%;
+height: 100%;
+position: relative;
+transform-style: preserve-3d;
+transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.card-front, .card-back {
-    position: absolute;
-    inset: 0;
-    border-radius: 18px;
-    overflow: hidden;
+.card-frame.is-flipped .card-inner {
+transform: rotateY(180deg);
 }
 
-/* Resimler */
-.card-front img, .card-back img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-}
-
-/* ÖN YÜZ - VARSAYILAN GÖRÜNÜR */
+/* ================================
+  FRONT SIDE
+  ================================ */
 .card-front {
-    opacity: 1;
-    z-index: 2;
-    pointer-events: auto;
+position: absolute;
+inset: 0;
+backface-visibility: hidden;
+border-radius: 18px;
+overflow: hidden;
 }
 
-/* ARKA YÜZ - VARSAYILAN GİZLİ */
+.card-front img {
+width: 100%;
+height: 100%;
+object-fit: cover;
+display: block;
+}
+
+/* ================================
+  BACK SIDE
+  ================================ */
 .card-back {
-    opacity: 0;
-    z-index: 1;
-    pointer-events: none;
+position: absolute;
+inset: 0;
+backface-visibility: hidden;
+transform: rotateY(180deg);
+border-radius: 18px;
+overflow: hidden;
 }
 
-/* FLIP DURUMU */
-.card-frame.flipped .card-front {
-    opacity: 0;
-    pointer-events: none;
+.card-back img {
+width: 100%;
+height: 100%;
+object-fit: cover;
+display: block;
 }
 
-.card-frame.flipped .card-back {
-    opacity: 1;
-    pointer-events: auto;
-}
-
-/* Overlay elemanlar */
 .card-back .back-overlay {
-    position: absolute;
-    inset: 0;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 18px;
-    padding: 25px;
-}
-/* ================================
-   PNG FADE EFFECT
-   ================================ */
-.card-inner.fade {
-    opacity: 0.6;
+position: absolute;
+inset: 0;
+display: flex;
+flex-direction: column;
+align-items: center;
+justify-content: center;
+gap: 18px;
+padding: 25px;
 }
 
 /* ================================
-   OVERLAY ACTIONS (PREN BUTTONS)
-   ================================ */
-.overlay-actions {
-    position: absolute;
-    bottom: 12px;
-    right: 12px;
-    display: flex;
-    gap: 8px;
-    z-index: 10;
+  PNG FADE EFFECT
+  ================================ */
+.card-inner.fade {
+opacity: 0.6;
 }
-/*
+
+/* ================================
+  OVERLAY ACTIONS (PREN BUTTONS)
+  ================================ */
+.overlay-actions {
+position: absolute;
+bottom: 12px;
+right: 12px;
+display: flex;
+gap: 8px;
+z-index: 10;
+}
+
 .mini-btn {
-    width: 44px;
-    height: 44px;
-    border-radius: 50%;
-    border: none;
-    background: transparent;
-    color: var(--text-color);
-    font-size: 1rem;
-    cursor: pointer;
-    backdrop-filter: blur(8px);
-    transition: all 0.3s ease;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+width: 44px;
+height: 44px;
+border-radius: 50%;
+border: none;
+background: transparent;
+color: var(--text-color);
+font-size: 1rem;
+cursor: pointer;
+backdrop-filter: blur(8px);
+transition: all 0.3s ease;
+display: flex;
+align-items: center;
+justify-content: center;
 }
 
 .mini-btn:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 6px 20px rgba(211, 152, 198, 0.5);
-    background: linear-gradient(90deg, #B76E79, #D398C6);
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
-    color: transparent;
-    background-color: transparent;
-} */
+transform: translateY(-3px);
+box-shadow: 0 6px 20px rgba(211, 152, 198, 0.5);
+background: linear-gradient(90deg, #B76E79, #D398C6);
+-webkit-background-clip: text;
+background-clip: text;
+-webkit-text-fill-color: transparent;
+color: transparent;
+background-color: transparent;
+}
 
 .flip-hint {
-    position: absolute;
-    top: 12px;
-    right: 12px;
-    font-size: 0.7rem;
-    color: rgba(255, 255, 255, 0.8);
-    background: rgba(0, 0, 0, 0.3);
-    padding: 4px 10px;
-    border-radius: 12px;
-    backdrop-filter: blur(5px);
-    z-index: 10;
+position: absolute;
+top: 12px;
+right: 12px;
+font-size: 0.7rem;
+color: rgba(255, 255, 255, 0.8);
+background: rgba(0, 0, 0, 0.3);
+padding: 4px 10px;
+border-radius: 12px;
+backdrop-filter: blur(5px);
+z-index: 10;
 }
 
 /* ================================
-   BACK TITLE (GRADIENT TEXT)
-   ================================ */
+  BACK TITLE (GRADIENT TEXT)
+  ================================ */
 .back-title {
-    font-size: 0.95rem;
-    font-weight: 600;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-    background: linear-gradient(to right, #B76E79, #D398C6);;
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
-    color: transparent;
+font-size: 0.95rem;
+font-weight: 600;
+letter-spacing: 1px;
+text-transform: uppercase;
+background: linear-gradient(to right, #B76E79, #D398C6);;
+-webkit-background-clip: text;
+background-clip: text;
+-webkit-text-fill-color: transparent;
+color: transparent;
 }
 
 /* ================================
-   QUICK LINKS
-   ================================ */
+  QUICK LINKS
+  ================================ */
 .quick-links {
-    display: flex;
-    gap: 12px;
-    flex-wrap: wrap;
-    justify-content: center;
+display: flex;
+gap: 12px;
+flex-wrap: wrap;
+justify-content: center;
 }
 
 .quick-link {
-    width: 48px;
-    height: 48px;
-    border-radius: 14px;
-    background: transparent;
-    color: var(--text-color);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1.2rem;
-    text-decoration: none;
-    transition: all 0.3s ease;
-    backdrop-filter: blur(5px);
-    border: none;
+width: 48px;
+height: 48px;
+border-radius: 14px;
+background: transparent;
+color: var(--text-color);
+display: flex;
+align-items: center;
+justify-content: center;
+font-size: 1.2rem;
+text-decoration: none;
+transition: all 0.3s ease;
+backdrop-filter: blur(5px);
+border: none;
 }
 
 .quick-link:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 6px 20px rgba(211, 152, 198, 0.5);
-    background: linear-gradient(90deg, #B76E79, #D398C6);
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
-    color: transparent;
-    background-color: transparent;
+transform: translateY(-3px);
+box-shadow: 0 6px 20px rgba(211, 152, 198, 0.5);
+background: linear-gradient(90deg, #B76E79, #D398C6);
+-webkit-background-clip: text;
+background-clip: text;
+-webkit-text-fill-color: transparent;
+color: transparent;
+background-color: transparent;
 }
 
 /* ================================
-   BACK FLIP BUTTON (SOL ALT)
-   ================================ */
+  BACK FLIP BUTTON (SOL ALT)
+  ================================ */
 .back-flip-btn {
-    position: absolute;
-    bottom: 12px;
-    left: 12px;
-    width: 44px;
-    height: 44px;
-    border-radius: 50%;
-    border: none;
+position: absolute;
+bottom: 12px;
+left: 12px;
+width: 44px;
+height: 44px;
+border-radius: 50%;
+border: none;
+    background: transparent;  /* Transparent kalacak */
     background: transparent;  
-    color: var(--text-color);
-    font-size: 1rem;
-    cursor: pointer;
-    backdrop-filter: blur(8px);
-    transition: all 0.3s ease;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 10;
+color: var(--text-color);
+font-size: 1rem;
+cursor: pointer;
+backdrop-filter: blur(8px);
+transition: all 0.3s ease;
+display: flex;
+align-items: center;
+justify-content: center;
+z-index: 10;
 }
 
 /* Back Flip Button HOVER - IKON GRADIENT */
 .back-flip-btn:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 6px 20px rgba(204, 142, 152, 0.5);
+transform: translateY(-3px);
+box-shadow: 0 6px 20px rgba(204, 142, 152, 0.5);
+    background: transparent;  /* Buton transparent kalır */
     background: transparent;  
-    background-color: transparent;
+background-color: transparent;
 }
 
 /* İkona gradient uygulama */
 .back-flip-btn:hover i {
-    background: linear-gradient(90deg, #B76E79, #D398C6);
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
-    color: transparent;
+background: linear-gradient(90deg, #B76E79, #D398C6);
+-webkit-background-clip: text;
+background-clip: text;
+-webkit-text-fill-color: transparent;
+color: transparent;
 }
 
 /* RTL Mode için reverse gradient */
 [dir="rtl"] .back-flip-btn:hover i {
-    background: linear-gradient(270deg, #B76E79, #D398C6);
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
-    color: transparent;
+background: linear-gradient(270deg, #B76E79, #D398C6);
+-webkit-background-clip: text;
+background-clip: text;
+-webkit-text-fill-color: transparent;
+color: transparent;
 }
 /* ================================
-   ACTION BAR (BOTTOM BUTTONS)
-   ================================ */
+  ACTION BAR (BOTTOM BUTTONS)
+  ================================ */
 .action-bar {
-    display: flex;
-    gap: 10px;
-    flex-wrap: wrap;
-    justify-content: center;
+display: flex;
+gap: 10px;
+flex-wrap: wrap;
+justify-content: center;
 }
 
 .action-btn {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    padding: 12px 22px;
-    border-radius: 30px;
-    border: 2px solid var(--primary-light);
-    background: transparent;
-    color: var(--primary-color);
-    font-size: 0.9rem;
-    font-weight: 600;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    text-decoration: none;
+display: inline-flex;
+align-items: center;
+gap: 8px;
+padding: 12px 22px;
+border-radius: 30px;
+border: 2px solid var(--primary-light);
+background: transparent;
+color: var(--primary-color);
+font-size: 0.9rem;
+font-weight: 600;
+cursor: pointer;
+transition: all 0.3s ease;
+text-decoration: none;
 }
 
 .action-btn.primary {
-    background: var(--primary-color);
-    border-color: var(--primary-color);
-    color: white;
+background: var(--primary-color);
+border-color: var(--primary-color);
+color: white;
 }
 
 .action-btn:hover {
-    background: var(--primary-color);
-    border-color: var(--primary-color);
-    color: white;
-    transform: translateY(-2px);
+background: var(--primary-color);
+border-color: var(--primary-color);
+color: white;
+transform: translateY(-2px);
 }
 
 /* ================================
-   TOAST NOTIFICATION
-   ================================ */
+  TOAST NOTIFICATION
+  ================================ */
 .toast {
-    position: fixed;
-    bottom: 30px;
-    left: 50%;
-    transform: translateX(-50%) translateY(100px);
-    background: var(--primary-color);
-    color: white;
-    padding: 12px 24px;
-    border-radius: 30px;
-    font-size: 0.9rem;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    z-index: 999;
-    transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+position: fixed;
+bottom: 30px;
+left: 50%;
+transform: translateX(-50%) translateY(100px);
+background: var(--primary-color);
+color: white;
+padding: 12px 24px;
+border-radius: 30px;
+font-size: 0.9rem;
+display: flex;
+align-items: center;
+gap: 10px;
+z-index: 999;
+transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
 }
 
 .toast.show {
-    transform: translateX(-50%) translateY(0);
-}
-
-/* ===================================
-   GLOBAL FIXES (HER CİHAZDA)
-   =================================== */
-
-/* Resimler butonlara engel olmasın */
-.card-front img, .card-back img {
-    pointer-events: none;
-    user-select: none;
-    -webkit-user-drag: none;
-}
-
-/* Overlay elemanların z-index'i yüksek olsun */
-.overlay-actions, .back-overlay, .quick-links {
-    z-index: 50;
-    position: relative;
-}
-
-
-
-/* Butonlar touch-friendly olsun */
-.mini-btn, .quick-link, .back-flip-btn {
-    z-index: 100;
-    position: relative;
-}
-
-/* ===================================
-   RESPONSIVE (MOBİL OPTİMİZASYON)
-   =================================== */
-@media (max-width: 480px) {
-    .card-frame {
-        max-width: 350px;
-    }
-    
-    .action-btn {
-        padding: 10px 18px;
-        font-size: 0.85rem;
-    }
-    
-    .theme-toggle {
-        width: 45px;
-        height: 45px;
-        font-size: 1.1rem;
-    }
-    
-    /* Mobil için ekstra touch optimizasyonları */
-    .mini-btn, .quick-link, .back-flip-btn {
-        touch-action: manipulation;
-        -webkit-tap-highlight-color: transparent;
-        min-width: 48px; /* iOS minimum dokunma alanı */
-        min-height: 48px;
-    }
-    
-    /* Mobilde perspective sorunu varsa */
-    .card-frame {
-        -webkit-perspective: 1000px;
-        perspective: 1000px;
-    }
-    
-    
+transform: translateX(-50%) translateY(0);
 }
 
 /* ================================
-   RTL SUPPORT FOR ARABIC
-   ================================ */
+  RESPONSIVE MEDIA QUERIES
+  ================================ */
+@media (max-width: 480px) {
+.card-frame {
+max-width: 350px;
+}
+
+.action-btn {
+padding: 10px 18px;
+font-size: 0.85rem;
+}
+
+.theme-toggle {
+width: 45px;
+height: 45px;
+font-size: 1.1rem;
+}
+}
+
+/* ================================
+  RTL SUPPORT FOR ARABIC
+  ================================ */
 [dir="rtl"] .top-controls {
-    right: auto;
-    left: 20px;
+right: auto;
+left: 20px;
 }
 
 [dir="rtl"] .overlay-actions {
-    right: auto;
-    left: 12px;
+right: auto;
+left: 12px;
 }
 
 [dir="rtl"] .back-flip-btn {
-    left: auto;
-    right: 12px;
+left: auto;
+right: 12px;
 }
 
 [dir="rtl"] .flip-hint {
-    right: auto;
-    left: 12px;
+right: auto;
+left: 12px;
 }
 
 [dir="rtl"] .design-dot {
-    transform: scaleX(-1);
+transform: scaleX(-1);
 }
 
 [dir="rtl"] .theme-toggle:hover {
-    transform: rotate(-15deg);
+transform: rotate(-15deg);
 }
 
 /* Gradient reversal for RTL */
@@ -522,67 +473,18 @@ body {
 [dir="rtl"] .quick-link:hover,
 [dir="rtl"] .quick-link:hover i,      
 [dir="rtl"] .back-flip-btn:hover i {  
-    background: linear-gradient(270deg, #B76E79, #D398C6);
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
-    color: transparent;
+background: linear-gradient(270deg, #B76E79, #D398C6);
+-webkit-background-clip: text;
+background-clip: text;
+-webkit-text-fill-color: transparent;
+color: transparent;
 }
 
 [dir="rtl"] .toast {
-    transform: translateX(50%) translateY(100px);
+transform: translateX(50%) translateY(100px);
 }
 
 [dir="rtl"] .toast.show {
-    transform: translateX(50%) translateY(0);
-}
-
-/* ===================================
-   MOBİL FLIP BUTONU
-   =================================== */
-
-.flip-trigger-btn, .back-flip-trigger {
-    position: absolute;
-    bottom: 12px;
-    left: 50%;
-    transform: translateX(-50%);
-    background: linear-gradient(135deg, #6d4aff 0%, #9b7dff 100%);
-    color: white;
-    border: none;
-    padding: 12px 24px;
-    border-radius: 25px;
-    font-size: 1rem;
-    font-weight: 600;
-    cursor: pointer;
-    z-index: 1000;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    box-shadow: 0 4px 12px rgba(109, 76, 255, 0.4);
-    transition: all 0.2s ease;
-    min-height: 48px;
-    min-width: 120px;
-    text-align: center;
-    user-select: none;
-    -webkit-tap-highlight-color: transparent;
-}
-
-.flip-trigger-btn:hover, .back-flip-trigger:hover {
-    transform: translateX(-50%) translateY(-2px);
-    box-shadow: 0 6px 16px rgba(109, 76, 255, 0.6);
-}
-
-.flip-trigger-btn:active, .back-flip-trigger:active {
-    transform: translateX(-50%) scale(0.98);
-}
-
-/* MOBİL İÇİN */
-@media (hover: none) and (pointer: coarse) {
-    .flip-trigger-btn, .back-flip-trigger {
-        padding: 14px 28px;
-        font-size: 1.1rem;
-        min-width: 140px;
-        bottom: 16px;
-    }
+transform: translateX(50%) translateY(0);
 }
 
