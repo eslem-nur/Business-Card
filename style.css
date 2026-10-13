@@ -431,6 +431,43 @@ body {
         height: 45px;
         font-size: 1.1rem;
     }
+
+    /* ADD THIS to ensure clickable elements on mobile */
+.mini-btn, .quick-link, .back-flip-btn {
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
+    z-index: 100;
+    position: relative;
+}
+
+/* Ensure card inner layer stays clickable */
+.card-inner {
+    z-index: 10;
+}
+
+/* Make sure images don't block clicks */
+.card-front img, .card-back img {
+    pointer-events: none; /* This allows clicks to pass through to overlays */
+    user-select: none;
+}
+
+/* Increase z-index for all interactive elements */
+.overlay-actions, .back-overlay, .quick-links {
+    z-index: 50;
+    position: relative;
+}
+
+/* Fix mobile tap issues */
+* {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    user-select: none;
+}
+
+.action-btn, .theme-toggle, .design-dot {
+    -webkit-user-select: none;
+    user-select: none;
+}
 }
 
 /* ================================

@@ -396,3 +396,26 @@ document.addEventListener('DOMContentLoaded', function() {
 window.addEventListener('error', function(e) {
     console.error('Global error:', e.error);
 });
+
+// ADD this to initCardFlip() or at end of script
+document.addEventListener('DOMContentLoaded', function() {
+    const cardFrame = document.getElementById('cardFrame');
+    
+    // Add touch event support for flip
+    let startX = 0;
+    let endX = 0;
+    
+    cardFrame.addEventListener('touchstart', (e) => {
+        startX = e.touches[0].clientX;
+    }, { passive: true });
+    
+    cardFrame.addEventListener('touchend', (e) => {
+        endX = e.changedTouches[0].clientX;
+        const diff = Math.abs(startX - endX);
+        
+        // Swipe gesture to flip (if horizontal swipe > 50px)
+        if (diff > 50 && typeof flipCard === 'function') {
+            flipCard();
+        }
+    }, { passive: true });
+});
