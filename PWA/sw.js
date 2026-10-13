@@ -7,9 +7,9 @@ const urlsToCache = [
   '/Business-Card/fr.html',
   '/Business-Card/en.html',
   '/Business-Card/ar.html',
-  '/Business-Card/PWA/icon/favicon.ico',
-  '/Business-Card/PWA/png/favicon-96x96.png',
-  '/Business-Card/PWA/manifest/site.webmanifest',
+  '/Business-Card/PWA/favicon.ico',
+  '/Business-Card/PWA/favicon-96x96.png',
+  '/Business-Card/PWA/site.webmanifest',
   // İstersen diğer CSS/JS dosyalarını da buraya ekleyebilirsin
 ];
 

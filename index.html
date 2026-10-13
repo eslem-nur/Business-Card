@@ -13,18 +13,18 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   
      <!-- PWA Manifest Ekleme -->
-    <link rel="apple-touch-icon" sizes="180x180" href="/Business-Card/PWA/png/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="96x96" href="/Business-Card/PWA/png/favicon-96x96.png" />
-    <link rel="manifest" href="/Business-Card/PWA/manifest/site.webmanifest" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/Business-Card/PWA/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="/Business-Card/PWA/favicon-96x96.png" />
+    <link rel="manifest" href="/Business-Card/PWA/site.webmanifest" />
     <meta name="theme-color" content="#000000" />
-    <link rel="icon" type="image/svg+xml" href="/Business-Card/PWA/svg/favicon.svg" />
-    <link rel="shortcut icon" href="/Business-Card/PWA/icon/favicon.ico" />
+    <link rel="icon" type="image/svg+xml" href="/Business-Card/PWA/favicon.svg" />
+    <link rel="shortcut icon" href="/Business-Card/PWA/favicon.ico" />
 
     <!-- PWA Service Worker Kaydı -->
     <script>
       if ('serviceWorker' in navigator) {
         window.addEventListener('load', () => {
-          navigator.serviceWorker.register('/Business-Card/PWA/js-files/sw.js', { scope: '/Business-Card/' })
+          navigator.serviceWorker.register('/Business-Card/PWA/sw.js', { scope: '/Business-Card/' })
             .then(reg => console.log('Service Worker başarıyla kaydedildi!', reg.scope))
             .catch(err => console.log('Service Worker kaydı başarısız:', err));
         });
