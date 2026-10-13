@@ -99,6 +99,7 @@
                         <a href="mailto:eslemnur-official@proton.me" class="quick-link" title="Email">
                             <i class="fas fa-envelope"></i>
                         </a>
+                      
                     </div>
                 </div>
             </div>
@@ -121,5 +122,18 @@
         <span id="toastMessage"></span>
     </div>
     <script src="script.js"></script>
+                      
+                      <script>
+// Mobilde resim kontrolü
+window.addEventListener('load', () => {
+    const frontImg = document.getElementById('frontImage');
+    console.log('Resim yolu:', frontImg?.src);
+    
+    const testImg = new Image();
+    testImg.onload = () => console.log('✅ Resim yüklendi');
+    testImg.onerror = () => console.error('❌ Resim bulunamadı!');
+    testImg.src = frontImg?.src;
+});
+</script>
 </body>
 </html>

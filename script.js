@@ -235,40 +235,42 @@ function initDesignSelector() {
     };
 }
 
-// ========== KART ÇEVİRME ==========
-function initCardFlip() {
-    window.flipCard = function() {
-        const frame = document.getElementById('cardFrame');
-        frame.classList.toggle('is-flipped');
-    };
-}
-
-// SCRIPT.JS'E EKLE (initCardFlip fonksiyonunun içine veya sonuna)
+// ========== KART ÇEVİRME (iOS UYUMLU) ==========
 function initCardFlip() {
     const frame = document.getElementById('cardFrame');
     
-    // Desktop için
-    frame.addEventListener('click', () => {
-        frame.classList.toggle('is-flipped');
+    // Click desteği
+    frame.addEventListener('click', function(e) {
+        e.preventDefault();
+        flipCard();
     });
     
-    // iOS için touch event desteği
-    let touchStartY = 0;
-    let touchEndY = 0;
+    // Touch desteği (iOS için)
+    let touchStartTime;
     
-    frame.addEventListener('touchstart', (e) => {
-        touchStartY = e.touches[0].clientY;
+    frame.addEventListener('touchstart', function() {
+        touchStartTime = new Date().getTime();
     }, { passive: true });
     
-    frame.addEventListener('touchend', (e) => {
-        touchEndY = e.changedTouches[0].clientY;
-        const diff = Math.abs(touchStartY - touchEndY);
+    frame.addEventListener('touchend', function(e) {
+        const touchEndTime = new Date().getTime();
+        const touchDuration = touchEndTime - touchStartTime;
         
-        // Swipe gesture (vertical > 50px) veya tap
-        if (diff > 50 || diff < 10) {
-            frame.classList.toggle('is-flipped');
+        if (touchDuration < 300) {
+            e.preventDefault();
+            flipCard();
         }
-    }, { passive: true });
+    }, { passive: false });
+    
+    window.flipCard = function() {
+        const frame = document.getElementById('cardFrame');
+        frame.classList.toggle('is-flipped');
+        
+        // iOS için zorla reflow
+        void frame.offsetWidth;
+        
+        console.log('🔄 Kart çevrildi:', frame.classList.contains('is-flipped') ? 'ARKA' : 'ÖN');
+    };
 }
 
 // ========== EMAIL KOPYALA ==========
@@ -428,6 +430,10 @@ window.addEventListener('error', function(e) {
 // ADD this to initCardFlip() or at end of script
 document.addEventListener('DOMContentLoaded', function() {
     const cardFrame = document.getElementById('cardFrame');
+  
+  if (cardFrame) {
+        cardFrame.addEventListener('touchstart', function() {}, { passive: true });
+    }
     
     // Add touch event support for flip
     let startX = 0;
@@ -446,4 +452,6 @@ document.addEventListener('DOMContentLoaded', function() {
             flipCard();
         }
     }, { passive: true });
+  
+  
 });
