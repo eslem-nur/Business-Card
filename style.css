@@ -312,7 +312,7 @@ body {
     height: 44px;
     border-radius: 50%;
     border: none;
-    background: transparent;  /* Transparent kalacak */
+    background: transparent;  
     color: var(--text-color);
     font-size: 1rem;
     cursor: pointer;
@@ -328,7 +328,7 @@ body {
 .back-flip-btn:hover {
     transform: translateY(-3px);
     box-shadow: 0 6px 20px rgba(204, 142, 152, 0.5);
-    background: transparent;  /* Buton transparent kalır */
+    background: transparent;  
     background-color: transparent;
 }
 
