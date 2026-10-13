@@ -6,7 +6,7 @@
     <meta name="theme-color" content="#A06872">
     
     <title>Business Card | Eslem Nur Çetin</title>
-    <meta name="description" content="Eslem Nur Çetin - Web Developer & Programmer Dijital İş Kartı">
+    <meta name="description" content="Eslem Nur Çetin - theology Student & Web Developer Business Card">
     
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
@@ -29,9 +29,7 @@
             gap: 25px;
         }
 
-        /* ============================
-           KART TASARIM SEÇİCİ (3 tasarım arasında geçiş)
-           ============================ */
+        /* TASARIM SEÇİCİ */
         .design-selector {
             display: flex;
             gap: 10px;
@@ -51,44 +49,89 @@
             transform: scale(1.3);
         }
 
-        /* ============================
-           KART KAPSIYICISI
-           ============================ */
+        /* KART KAPSAYICISI */
         .card-frame {
             width: 100%;
             max-width: 420px;
-            aspect-ratio: 85.6 / 54;  /* Standart kredi kartı oranı (yatay) */
+            aspect-ratio: 85.6 / 54;
             border-radius: 18px;
             overflow: hidden;
             position: relative;
             box-shadow: 0 20px 60px rgba(160, 104, 114, 0.35);
-            transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            perspective: 1000px;
         }
 
-        /* Kendi Canvas tasarımın burada görünüyor */
-        .card-frame img {
+        /* İÇ KARTE (FLIP YAPAN KISIM) */
+        .card-inner {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            transform-style: preserve-3d;
+            transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .card-frame.is-flipped .card-inner {
+            transform: rotateY(180deg);
+        }
+
+        /* ÖN YÜZ */
+        .card-front {
+            position: absolute;
+            inset: 0;
+            backface-visibility: hidden;
+            border-radius: 18px;
+            overflow: hidden;
+        }
+
+        .card-front img {
             width: 100%;
             height: 100%;
             object-fit: cover;
             display: block;
         }
 
-        /* Tasarım değişince yumuşak geçiş */
-        .card-frame.fade {
-            transform: scale(0.97);
+        /* ARKA YÜZ (PNG + BUTONLAR) */
+        .card-back {
+            position: absolute;
+            inset: 0;
+            backface-visibility: hidden;
+            transform: rotateY(180deg);
+            border-radius: 18px;
+            overflow: hidden;
+        }
+
+        .card-back img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .card-back .back-overlay {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 18px;
+            padding: 25px;
+            background: rgba(160, 104, 114, 0.7);
+            backdrop-filter: blur(3px);
+        }
+
+        /* PNG FADE EFEKTİ */
+        .card-inner.fade {
             opacity: 0.6;
         }
 
-        /* ============================
-           ÜSTÜNE GELEN İNTERAKTİF KATMAN
-           Butonlar PNG'nin üstünde şeffaf durur
-           ============================ */
         .overlay-actions {
             position: absolute;
             bottom: 12px;
             right: 12px;
             display: flex;
             gap: 8px;
+            z-index: 10;
         }
 
         .mini-btn {
@@ -112,7 +155,6 @@
             transform: translateY(-3px) scale(1.05);
         }
 
-        /* Kartı çevirme ipucu */
         .flip-hint {
             position: absolute;
             top: 12px;
@@ -123,42 +165,12 @@
             padding: 4px 10px;
             border-radius: 12px;
             backdrop-filter: blur(5px);
+            z-index: 10;
         }
 
-        /* ============================
-           ARKA YÜZ (Bağlantılar + QR)
-           ============================ */
-        .card-back {
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(135deg, #A06872 0%, #8a5560 100%);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            gap: 18px;
-            padding: 25px;
-            transform: rotateY(180deg);
-            backface-visibility: hidden;
-        }
-
-        .card-frame.is-flipped .card-front {
-            transform: rotateY(-180deg);
-        }
-
-        .card-frame.is-flipped .card-back {
-            transform: rotateY(0deg);
-        }
-
-        .card-front {
-            position: absolute;
-            inset: 0;
-            backface-visibility: hidden;
-            transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
+        /* ARKA ÜZERİNE GELEN BUTONLAR */
         .back-title {
-            color: rgba(255, 255, 255, 0.9);
+            color: white;
             font-size: 0.95rem;
             font-weight: 600;
             letter-spacing: 1px;
@@ -176,7 +188,7 @@
             width: 48px;
             height: 48px;
             border-radius: 14px;
-            background: rgba(255, 255, 255, 0.15);
+            background: rgba(255, 255, 255, 0.25);
             color: white;
             display: flex;
             align-items: center;
@@ -185,16 +197,15 @@
             text-decoration: none;
             transition: all 0.3s ease;
             backdrop-filter: blur(5px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
         }
 
         .quick-link:hover {
-            background: rgba(255, 255, 255, 0.3);
+            background: rgba(255, 255, 255, 0.4);
             transform: translateY(-3px);
         }
 
-        /* ============================
-           ALT AKSİYON ÇUBUĞU
-           ============================ */
+        /* AKSİYON ÇUBUĞU */
         .action-bar {
             display: flex;
             gap: 10px;
@@ -267,39 +278,48 @@
 
     <!-- KART -->
     <div class="card-frame" id="cardFrame">
-        <!-- ÖN YÜZ: Senin Canvas tasarımın -->
-        <div class="card-front">
-            <img src="Png/Style-1.png" alt="Business Card Tasarımı" id="cardImage">
+        <!-- FLIP İÇİ KATMANI -->
+        <div class="card-inner" id="cardInner">
             
-            <span class="flip-hint"><i class="fas fa-rotate"></i> Çevir</span>
-            
-            <div class="overlay-actions">
-                <button class="mini-btn" onclick="copyEmail()" title="Email Kopyala">
-                    <i class="fas fa-envelope"></i>
-                </button>
-                <button class="mini-btn" onclick="flipCard()" title="Çevir">
-                    <i class="fas fa-rotate"></i>
-                </button>
+            <!-- ÖN YÜZ: Ön Tasarım -->
+            <div class="card-front">
+                <img src="Png/Style-1.png" alt="Business Card Ön" id="frontImage">
+                
+                <span class="flip-hint"><i class="fas fa-rotate"></i> Çevir</span>
+                
+                <div class="overlay-actions">
+                    <button class="mini-btn" onclick="copyEmail()" title="Email Kopyala">
+                        <i class="fas fa-envelope"></i>
+                    </button>
+                    <button class="mini-btn" onclick="flipCard()" title="Çevir">
+                        <i class="fas fa-rotate"></i>
+                    </button>
+                </div>
             </div>
-        </div>
-        
-        <!-- ARKA YÜZ: Bağlantılar -->
-        <div class="card-back">
-            <span class="back-title">Bağlantılarım</span>
             
-            <div class="quick-links">
-                <a href="https://eslem-nur.github.io/official/index.html" target="_blank" rel="noopener noreferrer" class="quick-link" title="Portfolyo">
-                    <i class="fas fa-user"></i>
-                </a>
-                <a href="https://github.com/eslem-nur" target="_blank" rel="noopener noreferrer" class="quick-link" title="GitHub">
-                    <i class="fab fa-github"></i>
-                </a>
-                <a href="http://linktr.ee/eslemnur" target="_blank" rel="noopener noreferrer" class="quick-link" title="Linktree">
-                    <i class="fas fa-link"></i>
-                </a>
-                <a href="mailto:eslemnur-official@proton.me" class="quick-link" title="Email">
-                    <i class="fas fa-envelope"></i>
-                </a>
+            <!-- ARKA YÜZ: Arka Tasarım + Butonlar -->
+            <div class="card-back">
+                <img src="Png/Style-1-back.png" alt="Business Card Arka" id="backImage">
+                
+                <div class="back-overlay">
+                    <span class="back-title">Bağlantılarım</span>
+                    
+                    <div class="quick-links">
+                        <a href="https://eslem-nur.github.io/official/index.html" target="_blank" rel="noopener noreferrer" class="quick-link" title="Portfolyo">
+                            <i class="fas fa-user"></i>
+                        </a>
+                        <a href="https://github.com/eslem-nur" target="_blank" rel="noopener noreferrer" class="quick-link" title="GitHub">
+                            <i class="fab fa-github"></i>
+                        </a>
+                        
+                        <a href="http://linktr.ee/eslemnur" target="_blank" rel="noopener noreferrer" class="quick-link" title="Linktree">
+                            <i class="fas fa-link"></i>
+                        </a>
+                        <a href="mailto:eslemnur-official@proton.me" class="quick-link" title="Email">
+                            <i class="fas fa-envelope"></i>
+                        </a>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -321,35 +341,46 @@
     </div>
 
     <script>
-        // ========== 4 TASARIM ARASINDA GEÇİŞ ==========
-        // PNG dosyalarının adlarını buraya yaz!
-        const designs = [
-            'Png/Style-1.png',   // Canvas tasarımın 1
-            'Png/Style-2.png',   // Canvas tasarımın 2
-            'Png/Style-3.png',    // Canvas tasarımın 3
-            'Png/Style-4.png',    // Canvas tasarımın 4
+        // ========== 3 TASARIM ARASINDA GEÇİŞ ==========
+        // Ön ve arka yüz PNG'lerini buraya yaz!
+        const frontDesigns = [
+            'Png/Style-1.png',
+            'Png/Style-2.png',
+            'Png/Style-3.png',
+            'Png/Style-4.png'
         ];
+        
+        const backDesigns = [
+            'Png/Style-1-back.png',
+            'Png/Style-2-back.png',
+            'Png/Style-3-back.png',
+            'Png/Style-4-back.png'
+        ];
+        
         let currentDesign = 0;
 
         function changeDesign(index) {
-            const img = document.getElementById('cardImage');
-            const frame = document.getElementById('cardFrame');
+            const frontImg = document.getElementById('frontImage');
+            const backImg = document.getElementById('backImage');
+            const inner = document.getElementById('cardInner');
             const dots = document.querySelectorAll('.design-dot');
 
             // Yumuşak geçiş animasyonu
-            frame.classList.add('fade');
+            inner.classList.add('fade');
 
             setTimeout(() => {
                 currentDesign = index;
-                img.src = designs[index];
+                frontImg.src = frontDesigns[index];
+                backImg.src = backDesigns[index];
                 dots.forEach((dot, i) => dot.classList.toggle('active', i === index));
-                frame.classList.remove('fade');
+                inner.classList.remove('fade');
             }, 300);
         }
 
-        // ========== KART ÇEVİRME ==========
+        // ========== KART ÇEVİRME (FIX EDİLDİ) ==========
         function flipCard() {
-            document.getElementById('cardFrame').classList.toggle('is-flipped');
+            const frame = document.getElementById('cardFrame');
+            frame.classList.toggle('is-flipped');
         }
 
         // ========== EMAIL KOPYALA ==========
@@ -361,7 +392,6 @@
                     showToast('E-posta kopyalandı! ✓');
                 });
             } else {
-                // Eski tarayıcı desteği
                 const tmp = document.createElement('input');
                 document.body.appendChild(tmp);
                 tmp.value = email;
@@ -377,7 +407,7 @@
             const vcf = `BEGIN:VCARD
 VERSION:3.0
 FN:Eslem Nur Çetin
-TITLE:Web Theology Student & Web Developer
+TITLE:Web Developer & Programmer
 EMAIL;TYPE=INTERNET:eslemnur-official@proton.me
 URL:https://eslem-nur.github.io/official/index.html
 END:VCARD`;
@@ -398,7 +428,7 @@ END:VCARD`;
             const shareData = {
                 title: 'Eslem Nur Çetin - Web Developer',
                 text: 'Dijital iş kartıma göz atın!',
-                url: 'https://eslemnur.github.io/Business-Card/'
+                url: 'https://eslem-nur.github.io/Business-Card/'
             };
 
             if (navigator.share) {
