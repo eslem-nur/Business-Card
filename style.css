@@ -537,45 +537,30 @@ body {
 }
 
 /* ===================================
-   iOS SPECIFIC FIXES
+   ALL DEVICES FIX (MOBİL ÖNCELİKLİ)
    =================================== */
 
-/* Mobil cihazlarda zorla çalıştır */
-@media screen and (max-device-width: 1000px) {
-    .card-frame, .card-inner, .card-front, .card-back {
-        -webkit-transform: translateZ(0);
-        transform: translateZ(0);
-        -webkit-backface-visibility: hidden;
-        backface-visibility: hidden;
-        -webkit-perspective: 1000px;
-        perspective: 1000px;
-    }
-    
-    /* Touch hedef alanları büyüt */
-    .mini-btn, .quick-link, .back-flip-btn {
-        min-width: 52px !important;
-        min-height: 52px !important;
-        -webkit-backdrop-filter: blur(8px);
-        backdrop-filter: blur(8px);
-    }
+.card-frame, .card-inner, .card-front, .card-back {
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    -webkit-perspective: 1000px;
+    perspective: 1000px;
 }
 
-/* Resimler tıklamaya engel olmasın */
 .card-front img, .card-back img {
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
     pointer-events: none !important;
     -webkit-user-drag: none !important;
 }
 
-/* Tüm butonlar touch-friendly olsun */
-.mini-btn, .quick-link, .back-flip-btn, .action-btn, .theme-toggle {
-    touch-action: manipulation;
+.mini-btn, .quick-link, .back-flip-btn {
     -webkit-tap-highlight-color: transparent;
-    z-index: 100 !important;
-    position: relative;
-}
-
-/* Overlay yüksek z-index */
-.overlay-actions, .back-overlay, .quick-links {
-    z-index: 50 !important;
-    position: relative;
+    touch-action: manipulation;
+    min-width: 52px !important;
+    min-height: 52px !important;
+    -webkit-backdrop-filter: blur(8px);
+    backdrop-filter: blur(8px);
 }
