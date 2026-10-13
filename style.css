@@ -214,7 +214,7 @@ body {
     height: 44px;
     border-radius: 50%;
     border: none;
-    background: var(--note-bg);
+    background: transparent;
     color: var(--text-color);
     font-size: 1rem;
     cursor: pointer;
@@ -226,9 +226,14 @@ body {
 }
 
 .mini-btn:hover {
-    background: linear-gradient(to right, #B76E79, #D398C6);;
     transform: translateY(-3px);
     box-shadow: 0 6px 20px rgba(211, 152, 198, 0.5);
+    background: linear-gradient(90deg, #B76E79, #D398C6);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+    background-color: transparent;
 }
 
 .flip-hint {
@@ -252,7 +257,6 @@ body {
     font-weight: 600;
     letter-spacing: 1px;
     text-transform: uppercase;
-    
     background: linear-gradient(to right, #B76E79, #D398C6);;
     -webkit-background-clip: text;
     background-clip: text;
@@ -274,7 +278,7 @@ body {
     width: 48px;
     height: 48px;
     border-radius: 14px;
-    background: var(--note-bg);
+    background: transparent;
     color: var(--text-color);
     display: flex;
     align-items: center;
@@ -283,13 +287,18 @@ body {
     text-decoration: none;
     transition: all 0.3s ease;
     backdrop-filter: blur(5px);
-    border: 1px solid var(--border-color);
+    border: none;
 }
 
 .quick-link:hover {
-    background: linear-gradient(to right, #B76E79, #D398C6);;
     transform: translateY(-3px);
     box-shadow: 0 6px 20px rgba(211, 152, 198, 0.5);
+    background: linear-gradient(90deg, #B76E79, #D398C6);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+    background-color: transparent;
 }
 
 /* ================================
@@ -303,7 +312,7 @@ body {
     height: 44px;
     border-radius: 50%;
     border: none;
-    background: var(--note-bg);
+    background: transparent;  /* Transparent kalacak */
     color: var(--text-color);
     font-size: 1rem;
     cursor: pointer;
@@ -315,12 +324,31 @@ body {
     z-index: 10;
 }
 
+/* Back Flip Button HOVER - IKON GRADIENT */
 .back-flip-btn:hover {
-    background: linear-gradient(to right, var(--primary-color), var(--primary-light));
     transform: translateY(-3px);
     box-shadow: 0 6px 20px rgba(204, 142, 152, 0.5);
+    background: transparent;  /* Buton transparent kalır */
+    background-color: transparent;
 }
 
+/* İkona gradient uygulama */
+.back-flip-btn:hover i {
+    background: linear-gradient(90deg, #B76E79, #D398C6);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+}
+
+/* RTL Mode için reverse gradient */
+[dir="rtl"] .back-flip-btn:hover i {
+    background: linear-gradient(270deg, #B76E79, #D398C6);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+}
 /* ================================
    ACTION BAR (BOTTOM BUTTONS)
    ================================ */
@@ -439,12 +467,15 @@ body {
 /* Gradient reversal for RTL */
 [dir="rtl"] .back-title,
 [dir="rtl"] .mini-btn:hover,
+[dir="rtl"] .mini-btn:hover i,        
 [dir="rtl"] .quick-link:hover,
-[dir="rtl"] .back-flip-btn:hover {
-    background: linear-gradient(to left, #B76E79, #D398C6);
+[dir="rtl"] .quick-link:hover i,      
+[dir="rtl"] .back-flip-btn:hover i {  
+    background: linear-gradient(270deg, #B76E79, #D398C6);
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
+    color: transparent;
 }
 
 [dir="rtl"] .toast {
