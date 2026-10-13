@@ -239,40 +239,35 @@ function initDesignSelector() {
 function initCardFlip() {
     const frame = document.getElementById('cardFrame');
     
-    // Click desteği
-    frame.addEventListener('click', function(e) {
+    function forceFlip() {
+        frame.classList.toggle('flipped'); // is-flipped yerine sadece 'flipped'
+        
+        // Zorla render
+        void frame.offsetWidth;
+        
+        console.log('🔄 Flip:', frame.classList.contains('flipped') ? 'ARKA' : 'ÖN');
+    }
+    
+    frame.addEventListener('click', (e) => {
         e.preventDefault();
-        flipCard();
+        forceFlip();
     });
     
-    // Touch desteği (iOS için)
     let touchStartTime;
     
-    frame.addEventListener('touchstart', function() {
-        touchStartTime = new Date().getTime();
+    frame.addEventListener('touchstart', () => {
+        touchStartTime = Date.now();
     }, { passive: true });
     
-    frame.addEventListener('touchend', function(e) {
-        const touchEndTime = new Date().getTime();
-        const touchDuration = touchEndTime - touchStartTime;
-        
-        if (touchDuration < 300) {
+    frame.addEventListener('touchend', (e) => {
+        if ((Date.now() - touchStartTime) < 300) {
             e.preventDefault();
-            flipCard();
+            forceFlip();
         }
     }, { passive: false });
     
-    window.flipCard = function() {
-        const frame = document.getElementById('cardFrame');
-        frame.classList.toggle('is-flipped');
-        
-        // iOS için zorla reflow
-        void frame.offsetWidth;
-        
-        console.log('🔄 Kart çevrildi:', frame.classList.contains('is-flipped') ? 'ARKA' : 'ÖN');
-    };
+    window.flipCard = forceFlip;
 }
-
 // ========== EMAIL KOPYALA ==========
 function initCopyEmail() {
     const email = 'eslemnur-official@proton.me';

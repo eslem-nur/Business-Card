@@ -121,69 +121,75 @@ body {
 /* ================================
    CARD FRAME
    ================================ */
+/* ===================================
+   KART YAPISI (BASİT - GARANTİLİ)
+   =================================== */
+
 .card-frame {
     width: 100%;
     max-width: 420px;
-    height: 0;
-    padding-bottom: 63%; /* 54/85.6 ≈ 0.63 */
+    /* İkilisi birden: Modern tarayıcıda aspect-ratio, eskiyse padding-bottom */
+    aspect-ratio: 85.6 / 54;
+    height: auto;
+    padding-bottom: 0; /* Padding-bottom'u sıfırla, aspect-ratio kullan */
+    
     position: relative;
-
     border-radius: 18px;
     overflow: hidden;
-    position: relative;
     box-shadow: 0 20px 60px rgba(160, 104, 114, 0.35);
-    perspective: 1000px;
+    
+    /* Büyük ekranda maksimum boyut sınırı (isteğe bağlı) */
+    max-height: 400px;
 }
 
 .card-inner {
     width: 100%;
     height: 100%;
-    position: relative;
-    transform-style: preserve-3d;
-    transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+    position: absolute;
+    inset: 0;
 }
 
-.card-frame.is-flipped .card-inner {
-    transform: rotateY(180deg);
+.card-front, .card-back {
+    position: absolute;
+    inset: 0;
+    border-radius: 18px;
+    overflow: hidden;
 }
 
-/* ================================
-   FRONT SIDE
-   ================================ */
+/* Resimler */
+.card-front img, .card-back img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+/* ÖN YÜZ - VARSAYILAN GÖRÜNÜR */
 .card-front {
-    position: absolute;
-    inset: 0;
-    backface-visibility: hidden;
-    border-radius: 18px;
-    overflow: hidden;
+    opacity: 1;
+    z-index: 2;
+    pointer-events: auto;
 }
 
-.card-front img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-}
-
-/* ================================
-   BACK SIDE
-   ================================ */
+/* ARKA YÜZ - VARSAYILAN GİZLİ */
 .card-back {
-    position: absolute;
-    inset: 0;
-    backface-visibility: hidden;
-    transform: rotateY(180deg);
-    border-radius: 18px;
-    overflow: hidden;
+    opacity: 0;
+    z-index: 1;
+    pointer-events: none;
 }
 
-.card-back img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
+/* FLIP DURUMU */
+.card-frame.flipped .card-front {
+    opacity: 0;
+    pointer-events: none;
 }
 
+.card-frame.flipped .card-back {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+/* Overlay elemanlar */
 .card-back .back-overlay {
     position: absolute;
     inset: 0;
@@ -194,7 +200,6 @@ body {
     gap: 18px;
     padding: 25px;
 }
-
 /* ================================
    PNG FADE EFFECT
    ================================ */
@@ -213,7 +218,7 @@ body {
     gap: 8px;
     z-index: 10;
 }
-
+/*
 .mini-btn {
     width: 44px;
     height: 44px;
@@ -239,7 +244,7 @@ body {
     -webkit-text-fill-color: transparent;
     color: transparent;
     background-color: transparent;
-}
+} */
 
 .flip-hint {
     position: absolute;
@@ -435,11 +440,7 @@ body {
     position: relative;
 }
 
-/* Kart katmanı korunsun */
-.card-inner {
-    z-index: 10;
-    transform-style: preserve-3d;
-}
+
 
 /* Butonlar touch-friendly olsun */
 .mini-btn, .quick-link, .back-flip-btn {
@@ -480,10 +481,7 @@ body {
         perspective: 1000px;
     }
     
-    .card-inner {
-        -webkit-transform-style: preserve-3d;
-        transform-style: preserve-3d;
-    }
+    
 }
 
 /* ================================
@@ -539,31 +537,5 @@ body {
     transform: translateX(50%) translateY(0);
 }
 
-/* ===================================
-   ALL DEVICES FIX (MOBİL ÖNCELİKLİ)
-   =================================== */
 
-.card-frame, .card-inner, .card-front, .card-back {
-    -webkit-transform: translateZ(0);
-    transform: translateZ(0);
-    -webkit-backface-visibility: hidden;
-    backface-visibility: hidden;
-    -webkit-perspective: 1000px;
-    perspective: 1000px;
-}
 
-.card-front img, .card-back img {
-    -webkit-transform: translateZ(0);
-    transform: translateZ(0);
-    pointer-events: none !important;
-    -webkit-user-drag: none !important;
-}
-
-.mini-btn, .quick-link, .back-flip-btn {
-    -webkit-tap-highlight-color: transparent;
-    touch-action: manipulation;
-    min-width: 52px !important;
-    min-height: 52px !important;
-    -webkit-backdrop-filter: blur(8px);
-    backdrop-filter: blur(8px);
-}
