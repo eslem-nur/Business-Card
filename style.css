@@ -18,7 +18,7 @@
     --text-color: #8E5A65;
     --text-light: #8D6E63;
     --text-muted: #A89080;
-    --border-color: #9E7F7F;
+    --border-color: rgba(255, 255, 255, 0.3);
     --note-bg: rgba(255, 255, 255, 0.25);
     --soft-shadow: 0 8px 25px rgba(160, 104, 114, 0.2);
 }
@@ -106,7 +106,7 @@ body {
     width: 12px;
     height: 12px;
     border-radius: 50%;
-    background: var(--border-color);
+    background: #9E7F7F;
     cursor: pointer;
     transition: all 0.3s ease;
 }
