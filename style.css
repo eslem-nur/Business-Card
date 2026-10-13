@@ -413,9 +413,38 @@ body {
     transform: translateX(-50%) translateY(0);
 }
 
-/* ================================
-   RESPONSIVE MEDIA QUERIES
-   ================================ */
+/* ===================================
+   GLOBAL FIXES (HER CİHAZDA)
+   =================================== */
+
+/* Resimler butonlara engel olmasın */
+.card-front img, .card-back img {
+    pointer-events: none;
+    user-select: none;
+    -webkit-user-drag: none;
+}
+
+/* Overlay elemanların z-index'i yüksek olsun */
+.overlay-actions, .back-overlay, .quick-links {
+    z-index: 50;
+    position: relative;
+}
+
+/* Kart katmanı korunsun */
+.card-inner {
+    z-index: 10;
+    transform-style: preserve-3d;
+}
+
+/* Butonlar touch-friendly olsun */
+.mini-btn, .quick-link, .back-flip-btn {
+    z-index: 100;
+    position: relative;
+}
+
+/* ===================================
+   RESPONSIVE (MOBİL OPTİMİZASYON)
+   =================================== */
 @media (max-width: 480px) {
     .card-frame {
         max-width: 350px;
@@ -431,43 +460,25 @@ body {
         height: 45px;
         font-size: 1.1rem;
     }
-
-    /* ADD THIS to ensure clickable elements on mobile */
-.mini-btn, .quick-link, .back-flip-btn {
-    touch-action: manipulation;
-    -webkit-tap-highlight-color: transparent;
-    z-index: 100;
-    position: relative;
-}
-
-/* Ensure card inner layer stays clickable */
-.card-inner {
-    z-index: 10;
-}
-
-/* Make sure images don't block clicks */
-.card-front img, .card-back img {
-    pointer-events: none; /* This allows clicks to pass through to overlays */
-    user-select: none;
-}
-
-/* Increase z-index for all interactive elements */
-.overlay-actions, .back-overlay, .quick-links {
-    z-index: 50;
-    position: relative;
-}
-
-/* Fix mobile tap issues */
-* {
-    -webkit-touch-callout: none;
-    -webkit-user-select: none;
-    user-select: none;
-}
-
-.action-btn, .theme-toggle, .design-dot {
-    -webkit-user-select: none;
-    user-select: none;
-}
+    
+    /* Mobil için ekstra touch optimizasyonları */
+    .mini-btn, .quick-link, .back-flip-btn {
+        touch-action: manipulation;
+        -webkit-tap-highlight-color: transparent;
+        min-width: 48px; /* iOS minimum dokunma alanı */
+        min-height: 48px;
+    }
+    
+    /* Mobilde perspective sorunu varsa */
+    .card-frame {
+        -webkit-perspective: 1000px;
+        perspective: 1000px;
+    }
+    
+    .card-inner {
+        -webkit-transform-style: preserve-3d;
+        transform-style: preserve-3d;
+    }
 }
 
 /* ================================
