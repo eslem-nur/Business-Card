@@ -59,6 +59,8 @@ body {
     padding: 20px;
     font-family: 'Segoe UI', sans-serif;
     gap: 25px;
+    padding-top: env(safe-area-inset-top);
+    padding-bottom: env(safe-area-inset-bottom);
 }
 
 /* ================================
@@ -539,7 +541,7 @@ body {
    =================================== */
 
 /* Mobil cihazlarda zorla çalıştır */
-@media screen and (max-device-width: 812px) {
+@media screen and (max-device-width: 1000px) {
     .card-frame, .card-inner, .card-front, .card-back {
         -webkit-transform: translateZ(0);
         transform: translateZ(0);
