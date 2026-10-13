@@ -533,3 +533,37 @@ body {
 [dir="rtl"] .toast.show {
     transform: translateX(50%) translateY(0);
 }
+
+/* ===================================
+   iOS SPECIFIC FIXES
+   =================================== */
+@media screen and (max-device-width: 812px) {
+    /* Hardware acceleration zorla */
+    .card-frame, .card-inner, .card-front, .card-back {
+        -webkit-transform: translateZ(0);
+        transform: translateZ(0);
+        -webkit-backface-visibility: hidden;
+        backface-visibility: hidden;
+        -webkit-perspective: 1000px;
+        perspective: 1000px;
+    }
+    
+    /* iOS'ta backdrop-filter desteği */
+    .mini-btn, .quick-link, .back-flip-btn {
+        -webkit-backdrop-filter: blur(8px);
+        backdrop-filter: blur(8px);
+    }
+    
+    /* iOS'ta z-index sorunu varsa */
+    .card-front, .card-back {
+        -webkit-transform-style: preserve-3d;
+        transform-style: preserve-3d;
+    }
+    
+    /* Touch hedef alanları büyüt */
+    .mini-btn, .quick-link, .back-flip-btn {
+        min-width: 52px !important;
+        min-height: 52px !important;
+        padding: 5px;
+    }
+}

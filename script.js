@@ -243,6 +243,34 @@ function initCardFlip() {
     };
 }
 
+// SCRIPT.JS'E EKLE (initCardFlip fonksiyonunun içine veya sonuna)
+function initCardFlip() {
+    const frame = document.getElementById('cardFrame');
+    
+    // Desktop için
+    frame.addEventListener('click', () => {
+        frame.classList.toggle('is-flipped');
+    });
+    
+    // iOS için touch event desteği
+    let touchStartY = 0;
+    let touchEndY = 0;
+    
+    frame.addEventListener('touchstart', (e) => {
+        touchStartY = e.touches[0].clientY;
+    }, { passive: true });
+    
+    frame.addEventListener('touchend', (e) => {
+        touchEndY = e.changedTouches[0].clientY;
+        const diff = Math.abs(touchStartY - touchEndY);
+        
+        // Swipe gesture (vertical > 50px) veya tap
+        if (diff > 50 || diff < 10) {
+            frame.classList.toggle('is-flipped');
+        }
+    }, { passive: true });
+}
+
 // ========== EMAIL KOPYALA ==========
 function initCopyEmail() {
     const email = 'eslemnur-official@proton.me';
