@@ -17,7 +17,8 @@ const translations = {
         linkCopied: 'Link kopyalandı! ✓',
         shareMenu: 'Paylaşım menüsü açıldı!',
         errorOccured: 'Hata oluştu, tekrar deneyin!',
-        contactTitle: 'Theology Student & Web Developer'
+        contactTitle: 'Theology Student & Web Developer',
+        designPrefix: 'Tasarım '  
     },
     de: {
         themeToggle: 'Theme wechseln',
@@ -36,7 +37,8 @@ const translations = {
         linkCopied: 'Link kopiert! ✓',
         shareMenu: 'Freigabemenü geöffnet!',
         errorOccured: 'Fehler aufgetreten, bitte erneut versuchen!',
-        contactTitle: 'Theologiestudentin & Webentwicklerin'
+        contactTitle: 'Theologiestudentin & Webentwicklerin',
+        designPrefix: 'Design '  
     },
     fr: {
         themeToggle: 'Changer le thème',
@@ -55,7 +57,8 @@ const translations = {
         linkCopied: 'Lien copié! ✓',
         shareMenu: 'Menu de partage ouvert!',
         errorOccured: 'Erreur survenue, veuillez réessayer!',
-        contactTitle: 'Étudiante en théologie & Développeuse web'
+        contactTitle: 'Étudiante en théologie & Développeuse web',
+        designPrefix: 'Design '  
     },
     en: {
         themeToggle: 'Toggle Theme',
@@ -74,12 +77,13 @@ const translations = {
         linkCopied: 'Link copied! ✓',
         shareMenu: 'Share menu opened!',
         errorOccured: 'An error occurred, please try again!',
-        contactTitle: 'Theology Student & Web Developer'
+        contactTitle: 'Theology Student & Web Developer',
+        designPrefix: 'Design '  
     },
     ar: {
         themeToggle: 'تغيير المظهر',
         themeDark: 'تم تفعيل الوضع الداكن!',
-        themeLight: 'تم تفعيل الفوض الفاتح!',
+        themeLight: 'تم تفعيل الوض الفاتح!',
         flipHint: 'اقلب',
         connections: 'روابطي',
         portfolio: 'المعرض',
@@ -93,7 +97,8 @@ const translations = {
         linkCopied: 'تم نسخ الرابط! ✓',
         shareMenu: 'تم فتح قائمة المشاركة!',
         errorOccured: 'حدث خطأ، يرجى المحاولة مرة أخرى!',
-        contactTitle: 'طالبة علم اللاهوت ومطورة ويب'
+        contactTitle: 'طالبة علم اللاهوت ومطورة ويب',
+        designPrefix: 'التصميم '  
     }
 };
 
@@ -192,7 +197,7 @@ function initThemeToggle() {
     loadTheme();
 }
 
-// ========== 3 TASARIM ARASINDA GEÇİŞ ==========
+// ========== 4 TASARIM ARASINDA GEÇİŞ ==========
 function initDesignSelector() {
     // Ön ve arka yüz PNG'lerini buraya yaz!
     const frontDesigns = [
