@@ -537,5 +537,52 @@ body {
     transform: translateX(50%) translateY(0);
 }
 
+/* ===================================
+   MOBİL FLIP BUTONU
+   =================================== */
 
+.flip-trigger-btn, .back-flip-trigger {
+    position: absolute;
+    bottom: 12px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: linear-gradient(135deg, #6d4aff 0%, #9b7dff 100%);
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 25px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    box-shadow: 0 4px 12px rgba(109, 76, 255, 0.4);
+    transition: all 0.2s ease;
+    min-height: 48px;
+    min-width: 120px;
+    text-align: center;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.flip-trigger-btn:hover, .back-flip-trigger:hover {
+    transform: translateX(-50%) translateY(-2px);
+    box-shadow: 0 6px 16px rgba(109, 76, 255, 0.6);
+}
+
+.flip-trigger-btn:active, .back-flip-trigger:active {
+    transform: translateX(-50%) scale(0.98);
+}
+
+/* MOBİL İÇİN */
+@media (hover: none) and (pointer: coarse) {
+    .flip-trigger-btn, .back-flip-trigger {
+        padding: 14px 28px;
+        font-size: 1.1rem;
+        min-width: 140px;
+        bottom: 16px;
+    }
+}
 

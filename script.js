@@ -487,28 +487,33 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
     
-    // Kart Frame için touch delay ekle (buton değilse flip yapılsın)
-    let touchStartTime = 0;
+    // ===================================
+// MOBİL FLIP BUTONU (CARD TIKLA YOK)
+// ===================================
+
+function initCardFlip() {
+    const frame = document.getElementById('cardFrame');
     
-    if (cardFrame) {
-        cardFrame.addEventListener('touchstart', function(e) {
-            // Butonlara dokunulmadıysa
-            if (!e.target.closest('.mini-btn') && !e.target.closest('.back-flip-btn') && !e.target.closest('.quick-link')) {
-                touchStartTime = Date.now();
-            }
-        }, { passive: true });
+    if (!frame) return;
+    
+    function forceFlip() {
+        frame.classList.toggle('flipped');
+        void frame.offsetWidth;
         
-        cardFrame.addEventListener('touchend', function(e) {
-            if (!e.target.closest('.mini-btn') && !e.target.closest('.back-flip-btn') && !e.target.closest('.quick-link')) {
-                const touchDuration = Date.now() - touchStartTime;
-                
-                if (touchDuration < 300) {
-                    e.preventDefault();
-                    if (typeof flipCard === 'function') {
-                        flipCard();
-                    }
-                }
-            }
-        }, { passive: false });
+        const target = frame.classList.contains('flipped') ? 'ARKA' : 'ÖN';
+        console.log('🔄 Flip:', target);
     }
-});
+    
+    // SADECE BUTONLAR ÇALIŞACAK
+    window.flipCard = forceFlip;
+    
+    // Butonlara stopPropagation ekle
+    setTimeout(() => {
+        const btns = document.querySelectorAll('.flip-trigger-btn, .back-flip-trigger');
+        btns.forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                e.stopPropagation();
+            });
+        });
+    }, 100);
+}
