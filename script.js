@@ -465,3 +465,50 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 });
+
+// ===================================
+// MOBİL İÇİN BUTON TIKLA ENGEL
+// ===================================
+
+document.addEventListener('DOMContentLoaded', function() {
+    const buttons = document.querySelectorAll('.mini-btn, .back-flip-btn, .quick-link');
+    const cardFrame = document.getElementById('cardFrame');
+    
+    buttons.forEach(btn => {
+        // Touch olayı öncelikli
+        btn.addEventListener('touchstart', function(e) {
+            e.stopPropagation();
+            e.preventDefault();
+        }, { passive: false });
+        
+        // Click olayı da engellensin
+        btn.addEventListener('click', function(e) {
+            e.stopPropagation();
+        });
+    });
+    
+    // Kart Frame için touch delay ekle (buton değilse flip yapılsın)
+    let touchStartTime = 0;
+    
+    if (cardFrame) {
+        cardFrame.addEventListener('touchstart', function(e) {
+            // Butonlara dokunulmadıysa
+            if (!e.target.closest('.mini-btn') && !e.target.closest('.back-flip-btn') && !e.target.closest('.quick-link')) {
+                touchStartTime = Date.now();
+            }
+        }, { passive: true });
+        
+        cardFrame.addEventListener('touchend', function(e) {
+            if (!e.target.closest('.mini-btn') && !e.target.closest('.back-flip-btn') && !e.target.closest('.quick-link')) {
+                const touchDuration = Date.now() - touchStartTime;
+                
+                if (touchDuration < 300) {
+                    e.preventDefault();
+                    if (typeof flipCard === 'function') {
+                        flipCard();
+                    }
+                }
+            }
+        }, { passive: false });
+    }
+});
