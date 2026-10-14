@@ -1,490 +1,533 @@
 * {
-margin: 0;
-padding: 0;
-box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
 /* ================================
-  CSS VARIABLES (LIGHT MODE DEFAULT)
-  ================================ */
+   CSS VARIABLES (LIGHT MODE DEFAULT)
+   ================================ */
 :root {
---primary-color: #A06872;
---primary-dark: #8E5A65;
---primary-light: #CC8E98;
---secondary-color: #FDF5E6;
---accent-color: #9E7F7F;
---bg-color: #FFF9F9;
---card-bg: #FFFFFF;
---text-color: #8E5A65;
---text-light: #8D6E63;
---text-muted: #A89080;
---border-color: rgba(255, 255, 255, 0.3);
---note-bg: rgba(255, 255, 255, 0.25);
---soft-shadow: 0 8px 25px rgba(160, 104, 114, 0.2);
+    --primary-color: #A06872;
+    --primary-dark: #8E5A65;
+    --primary-light: #CC8E98;
+    --secondary-color: #FDF5E6;
+    --accent-color: #9E7F7F;
+    --bg-color: #FFF9F9;
+    --card-bg: #FFFFFF;
+    --text-color: #8E5A65;
+    --text-light: #8D6E63;
+    --text-muted: #A89080;
+    --border-color: rgba(255, 255, 255, 0.3);
+    --note-bg: rgba(255, 255, 255, 0.25);
+    --soft-shadow: 0 8px 25px rgba(160, 104, 114, 0.2);
 }
 
 /* ================================
-  DARK MODE
-  ================================ */
+   DARK MODE
+   ================================ */
 [data-theme="dark"] {
---primary-color: #CC8E98;
---primary-dark: #A06872;
---primary-light: #E0A4AC;
---secondary-color: #2D2D2D;
---accent-color: #C0A0A0;
---bg-color: #1A1A1A;
---card-bg: #252525;
---text-color: #8E5A65;
---text-light: #B0B0B0;
---text-muted: #808080;
---border-color: rgba(255, 255, 255, 0.3);
---note-bg: rgba(255, 255, 255, 0.25);
---soft-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    --primary-color: #CC8E98;
+    --primary-dark: #A06872;
+    --primary-light: #E0A4AC;
+    --secondary-color: #2D2D2D;
+    --accent-color: #C0A0A0;
+    --bg-color: #1A1A1A;
+    --card-bg: #252525;
+    --text-color: #8E5A65;
+    --text-light: #B0B0B0;
+    --text-muted: #808080;
+    --border-color: rgba(255, 255, 255, 0.3);
+    --note-bg: rgba(255, 255, 255, 0.25);
+    --soft-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
 }
 
 /* ================================
-  BODY & TRANSITIONS
-  ================================ */
+   BODY & TRANSITIONS
+   ================================ */
 * {
-transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
 }
 
 body {
-min-height: 100vh;
-background: var(--bg-color);
-display: flex;
-flex-direction: column;
-align-items: center;
-justify-content: center;
-padding: 20px;
-font-family: 'Segoe UI', sans-serif;
-gap: 25px;
+    min-height: 100vh;
+    background: var(--bg-color);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    font-family: 'Segoe UI', sans-serif;
+    gap: 25px;
 }
 
 /* ================================
-  TOP CONTROLS (THEME TOGGLE)
-  ================================ */
+   TOP CONTROLS (THEME TOGGLE)
+   ================================ */
 .top-controls {
-position: fixed;
-top: 20px;
-right: 20px;
-z-index: 1000;
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1000;
 }
 
 .theme-toggle {
-width: 50px;
-height: 50px;
-border-radius: 50%;
-border: 2px solid var(--border-color);
-background: var(--card-bg);
-color: var(--text-color);
-font-size: 1.3rem;
-cursor: pointer;
-display: flex;
-align-items: center;
-justify-content: center;
-transition: all 0.3s ease;
-box-shadow: 0 4px 15px var(--soft-shadow);
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    border: 2px solid var(--border-color);
+    background: var(--card-bg);
+    color: var(--text-color);
+    font-size: 1.3rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px var(--soft-shadow);
 }
 
 .theme-toggle:hover {
-background: var(--primary-color);
-color: white;
-border-color: var(--primary-color);
-transform: rotate(15deg);
+    background: var(--primary-color);
+    color: white;
+    border-color: var(--primary-color);
+    transform: rotate(15deg);
 }
 
 /* ================================
-  DESIGN SELECTOR
-  ================================ */
+   DESIGN SELECTOR
+   ================================ */
 .design-selector {
-display: flex;
-gap: 10px;
+    display: flex;
+    gap: 10px;
 }
 
 .design-dot {
-width: 12px;
-height: 12px;
-border-radius: 50%;
-background: #9E7F7F;
-cursor: pointer;
-transition: all 0.3s ease;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: #9E7F7F;
+    cursor: pointer;
+    transition: all 0.3s ease;
 }
 
 .design-dot.active {
-background: var(--primary-light);
-transform: scale(1.3);
+    background: var(--primary-light);
+    transform: scale(1.3);
 }
 
 /* ================================
-  CARD FRAME
-  ================================ */
+   CARD FRAME (BASİT - 3D YOK)
+   ================================ */
 .card-frame {
-width: 100%;
-max-width: 420px;
-aspect-ratio: 85.6 / 54;
-border-radius: 18px;
-overflow: hidden;
-position: relative;
-box-shadow: 0 20px 60px rgba(160, 104, 114, 0.35);
-perspective: 1000px;
+    width: 100%;
+    max-width: 420px;
+    aspect-ratio: 85.6 / 54;
+    border-radius: 18px;
+    overflow: hidden;
+    position: relative;
+    box-shadow: 0 20px 60px rgba(160, 104, 114, 0.35);
+    /* ❌ perspective: 1000px; ← SİLİNDİ */
 }
 
 .card-inner {
-width: 100%;
-height: 100%;
-position: relative;
-transform-style: preserve-3d;
-transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.card-frame.is-flipped .card-inner {
-transform: rotateY(180deg);
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    inset: 0;
+    /* ❌ transform-style: preserve-3d; ← SİLİNDİ */
+    /* ❌ transition: transform... ← SİLİNDİ */
+    transition: opacity 0.3s ease;
 }
 
 /* ================================
-  FRONT SIDE
-  ================================ */
+   FRONT SIDE (BASİT OPACITY)
+   ================================ */
 .card-front {
-position: absolute;
-inset: 0;
-backface-visibility: hidden;
-border-radius: 18px;
-overflow: hidden;
+    position: absolute;
+    inset: 0;
+    /* ❌ backface-visibility: hidden; ← SİLİNDİ */
+    border-radius: 18px;
+    overflow: hidden;
+    transition: opacity 0.3s ease;
 }
 
 .card-front img {
-width: 100%;
-height: 100%;
-object-fit: cover;
-display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    pointer-events: none !important;
 }
 
 /* ================================
-  BACK SIDE
-  ================================ */
+   BACK SIDE (BASİT OPACITY)
+   ================================ */
 .card-back {
-position: absolute;
-inset: 0;
-backface-visibility: hidden;
-transform: rotateY(180deg);
-border-radius: 18px;
-overflow: hidden;
+    position: absolute;
+    inset: 0;
+    /* ❌ backface-visibility: hidden; ← SİLİNDİ */
+    /* ❌ transform: rotateY(180deg); ← SİLİNDİ */
+    border-radius: 18px;
+    overflow: hidden;
+    transition: opacity 0.3s ease;
 }
 
 .card-back img {
-width: 100%;
-height: 100%;
-object-fit: cover;
-display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    pointer-events: none !important;
 }
 
 .card-back .back-overlay {
-position: absolute;
-inset: 0;
-display: flex;
-flex-direction: column;
-align-items: center;
-justify-content: center;
-gap: 18px;
-padding: 25px;
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 18px;
+    padding: 25px;
 }
 
 /* ================================
-  PNG FADE EFFECT
-  ================================ */
+   FLIP DURUMU (OPACITY TABANLI)
+   ================================ */
+.card-front {
+    opacity: 1;
+    z-index: 2;
+    pointer-events: auto;
+}
+
+.card-back {
+    opacity: 0;
+    z-index: 1;
+    pointer-events: none;
+}
+
+.card-frame.is-flipped .card-front {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.card-frame.is-flipped .card-back {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+/* ================================
+   PNG FADE EFFECT
+   ================================ */
 .card-inner.fade {
-opacity: 0.6;
+    opacity: 0.6;
 }
 
 /* ================================
-  OVERLAY ACTIONS (PREN BUTTONS)
-  ================================ */
+   OVERLAY ACTIONS (ÖN BUTONLAR)
+   ================================ */
 .overlay-actions {
-position: absolute;
-bottom: 12px;
-right: 12px;
-display: flex;
-gap: 8px;
-z-index: 10;
+    position: absolute;
+    bottom: 12px;
+    right: 12px;
+    display: flex;
+    gap: 8px;
+    z-index: 100;
 }
 
 .mini-btn {
-width: 44px;
-height: 44px;
-border-radius: 50%;
-border: none;
-background: transparent;
-color: var(--text-color);
-font-size: 1rem;
-cursor: pointer;
-backdrop-filter: blur(8px);
-transition: all 0.3s ease;
-display: flex;
-align-items: center;
-justify-content: center;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    border: none;
+    background: transparent;
+    color: var(--text-color);
+    font-size: 1rem;
+    cursor: pointer;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 100;
+    position: relative;
 }
 
 .mini-btn:hover {
-transform: translateY(-3px);
-box-shadow: 0 6px 20px rgba(211, 152, 198, 0.5);
-background: linear-gradient(90deg, #B76E79, #D398C6);
--webkit-background-clip: text;
-background-clip: text;
--webkit-text-fill-color: transparent;
-color: transparent;
-background-color: transparent;
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(211, 152, 198, 0.5);
+    background: linear-gradient(90deg, #B76E79, #D398C6);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+    background-color: transparent;
 }
 
 .flip-hint {
-position: absolute;
-top: 12px;
-right: 12px;
-font-size: 0.7rem;
-color: rgba(255, 255, 255, 0.8);
-background: rgba(0, 0, 0, 0.3);
-padding: 4px 10px;
-border-radius: 12px;
-backdrop-filter: blur(5px);
-z-index: 10;
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    font-size: 0.7rem;
+    color: rgba(255, 255, 255, 0.8);
+    background: rgba(0, 0, 0, 0.3);
+    padding: 4px 10px;
+    border-radius: 12px;
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    z-index: 10;
 }
 
 /* ================================
-  BACK TITLE (GRADIENT TEXT)
-  ================================ */
+   BACK TITLE (GRADIENT TEXT)
+   ================================ */
 .back-title {
-font-size: 0.95rem;
-font-weight: 600;
-letter-spacing: 1px;
-text-transform: uppercase;
-background: linear-gradient(to right, #B76E79, #D398C6);;
--webkit-background-clip: text;
-background-clip: text;
--webkit-text-fill-color: transparent;
-color: transparent;
+    font-size: 0.95rem;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    background: linear-gradient(to right, #B76E79, #D398C6);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
 }
 
 /* ================================
-  QUICK LINKS
-  ================================ */
+   QUICK LINKS
+   ================================ */
 .quick-links {
-display: flex;
-gap: 12px;
-flex-wrap: wrap;
-justify-content: center;
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    justify-content: center;
 }
 
 .quick-link {
-width: 48px;
-height: 48px;
-border-radius: 14px;
-background: transparent;
-color: var(--text-color);
-display: flex;
-align-items: center;
-justify-content: center;
-font-size: 1.2rem;
-text-decoration: none;
-transition: all 0.3s ease;
-backdrop-filter: blur(5px);
-border: none;
+    width: 48px;
+    height: 48px;
+    border-radius: 14px;
+    background: transparent;
+    color: var(--text-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    border: none;
+    z-index: 100;
+    cursor: pointer;
 }
 
 .quick-link:hover {
-transform: translateY(-3px);
-box-shadow: 0 6px 20px rgba(211, 152, 198, 0.5);
-background: linear-gradient(90deg, #B76E79, #D398C6);
--webkit-background-clip: text;
-background-clip: text;
--webkit-text-fill-color: transparent;
-color: transparent;
-background-color: transparent;
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(211, 152, 198, 0.5);
+    background: linear-gradient(90deg, #B76E79, #D398C6);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+    background-color: transparent;
 }
 
 /* ================================
-  BACK FLIP BUTTON (SOL ALT)
-  ================================ */
+   BACK FLIP BUTTON (SOL ALT)
+   ================================ */
 .back-flip-btn {
-position: absolute;
-bottom: 12px;
-left: 12px;
-width: 44px;
-height: 44px;
-border-radius: 50%;
-border: none;
-    background: transparent;  /* Transparent kalacak */
-    background: transparent;  
-color: var(--text-color);
-font-size: 1rem;
-cursor: pointer;
-backdrop-filter: blur(8px);
-transition: all 0.3s ease;
-display: flex;
-align-items: center;
-justify-content: center;
-z-index: 10;
+    position: absolute;
+    bottom: 12px;
+    left: 12px;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    border: none;
+    background: transparent;
+    color: var(--text-color);
+    font-size: 1rem;
+    cursor: pointer;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 100;
 }
 
-/* Back Flip Button HOVER - IKON GRADIENT */
 .back-flip-btn:hover {
-transform: translateY(-3px);
-box-shadow: 0 6px 20px rgba(204, 142, 152, 0.5);
-    background: transparent;  /* Buton transparent kalır */
-    background: transparent;  
-background-color: transparent;
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(204, 142, 152, 0.5);
+    background: transparent;
 }
 
-/* İkona gradient uygulama */
 .back-flip-btn:hover i {
-background: linear-gradient(90deg, #B76E79, #D398C6);
--webkit-background-clip: text;
-background-clip: text;
--webkit-text-fill-color: transparent;
-color: transparent;
+    background: linear-gradient(90deg, #B76E79, #D398C6);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
 }
 
-/* RTL Mode için reverse gradient */
-[dir="rtl"] .back-flip-btn:hover i {
-background: linear-gradient(270deg, #B76E79, #D398C6);
--webkit-background-clip: text;
-background-clip: text;
--webkit-text-fill-color: transparent;
-color: transparent;
-}
 /* ================================
-  ACTION BAR (BOTTOM BUTTONS)
-  ================================ */
+   ACTION BAR (ALT BUTONLAR)
+   ================================ */
 .action-bar {
-display: flex;
-gap: 10px;
-flex-wrap: wrap;
-justify-content: center;
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    justify-content: center;
 }
 
 .action-btn {
-display: inline-flex;
-align-items: center;
-gap: 8px;
-padding: 12px 22px;
-border-radius: 30px;
-border: 2px solid var(--primary-light);
-background: transparent;
-color: var(--primary-color);
-font-size: 0.9rem;
-font-weight: 600;
-cursor: pointer;
-transition: all 0.3s ease;
-text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 22px;
+    border-radius: 30px;
+    border: 2px solid var(--primary-light);
+    background: transparent;
+    color: var(--primary-color);
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-decoration: none;
 }
 
 .action-btn.primary {
-background: var(--primary-color);
-border-color: var(--primary-color);
-color: white;
+    background: var(--primary-color);
+    border-color: var(--primary-color);
+    color: white;
 }
 
 .action-btn:hover {
-background: var(--primary-color);
-border-color: var(--primary-color);
-color: white;
-transform: translateY(-2px);
+    background: var(--primary-color);
+    border-color: var(--primary-color);
+    color: white;
+    transform: translateY(-2px);
 }
 
 /* ================================
-  TOAST NOTIFICATION
-  ================================ */
+   TOAST NOTIFICATION
+   ================================ */
 .toast {
-position: fixed;
-bottom: 30px;
-left: 50%;
-transform: translateX(-50%) translateY(100px);
-background: var(--primary-color);
-color: white;
-padding: 12px 24px;
-border-radius: 30px;
-font-size: 0.9rem;
-display: flex;
-align-items: center;
-gap: 10px;
-z-index: 999;
-transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
-box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+    position: fixed;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%) translateY(100px);
+    background: var(--primary-color);
+    color: white;
+    padding: 12px 24px;
+    border-radius: 30px;
+    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    z-index: 999;
+    transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
 }
 
 .toast.show {
-transform: translateX(-50%) translateY(0);
+    transform: translateX(-50%) translateY(0);
 }
 
 /* ================================
-  RESPONSIVE MEDIA QUERIES
-  ================================ */
+   RESPONSIVE MEDIA QUERIES
+   ================================ */
 @media (max-width: 480px) {
-.card-frame {
-max-width: 350px;
-}
-
-.action-btn {
-padding: 10px 18px;
-font-size: 0.85rem;
-}
-
-.theme-toggle {
-width: 45px;
-height: 45px;
-font-size: 1.1rem;
-}
+    .card-frame {
+        max-width: 350px;
+    }
+    
+    .action-btn {
+        padding: 10px 18px;
+        font-size: 0.85rem;
+    }
+    
+    .theme-toggle {
+        width: 45px;
+        height: 45px;
+        font-size: 1.1rem;
+    }
+    
+    .mini-btn, .back-flip-btn, .quick-link {
+        z-index: 100 !important;
+        touch-action: manipulation;
+    }
 }
 
 /* ================================
-  RTL SUPPORT FOR ARABIC
-  ================================ */
+   RTL SUPPORT FOR ARABIC
+   ================================ */
 [dir="rtl"] .top-controls {
-right: auto;
-left: 20px;
+    right: auto;
+    left: 20px;
 }
 
 [dir="rtl"] .overlay-actions {
-right: auto;
-left: 12px;
+    right: auto;
+    left: 12px;
 }
 
 [dir="rtl"] .back-flip-btn {
-left: auto;
-right: 12px;
+    left: auto;
+    right: 12px;
 }
 
 [dir="rtl"] .flip-hint {
-right: auto;
-left: 12px;
+    right: auto;
+    left: 12px;
 }
 
 [dir="rtl"] .design-dot {
-transform: scaleX(-1);
+    transform: scaleX(-1);
 }
 
 [dir="rtl"] .theme-toggle:hover {
-transform: rotate(-15deg);
+    transform: rotate(-15deg);
 }
 
-/* Gradient reversal for RTL */
 [dir="rtl"] .back-title,
 [dir="rtl"] .mini-btn:hover,
-[dir="rtl"] .mini-btn:hover i,        
+[dir="rtl"] .mini-btn:hover i,
 [dir="rtl"] .quick-link:hover,
-[dir="rtl"] .quick-link:hover i,      
-[dir="rtl"] .back-flip-btn:hover i {  
-background: linear-gradient(270deg, #B76E79, #D398C6);
--webkit-background-clip: text;
-background-clip: text;
--webkit-text-fill-color: transparent;
-color: transparent;
+[dir="rtl"] .quick-link:hover i,
+[dir="rtl"] .back-flip-btn:hover i {
+    background: linear-gradient(270deg, #B76E79, #D398C6);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
 }
 
 [dir="rtl"] .toast {
-transform: translateX(50%) translateY(100px);
+    transform: translateX(50%) translateY(100px);
 }
 
 [dir="rtl"] .toast.show {
-transform: translateX(50%) translateY(0);
+    transform: translateX(50%) translateY(0);
 }
 
+/* ================================
+   iOS SPECIFIC FIXES
+   ================================ */
+@supports (-webkit-touch-callout: none) {
+    .card-frame, .card-inner, .card-front, .card-back {
+        -webkit-transform: translateZ(0);
+        transform: translateZ(0);
+        -webkit-backface-visibility: hidden;
+        backface-visibility: hidden;
+    }
+    
+    .mini-btn, .back-flip-btn, .quick-link {
+        -webkit-tap-highlight-color: transparent;
+        min-width: 44px;
+        min-height: 44px;
+    }
+}
