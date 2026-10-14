@@ -397,7 +397,7 @@ window.addEventListener('error', function(e) {
 console.error('Global error:', e.error);
 });
 
-// ADD this to initCardFlip() or at end of script
+// flip effekt
 document.addEventListener('DOMContentLoaded', function() {
     const cardFrame = document.getElementById('cardFrame');
     
