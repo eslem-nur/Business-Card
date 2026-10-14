@@ -15,7 +15,7 @@
     --accent-color: #9E7F7F;
     --bg-color: #FFF9F9;
     --card-bg: #FFFFFF;
-    --text-color: #8E5A65;
+    --text-color: linear-gradient(90deg, #B76E79, #D398C6);
     --text-light: #8D6E63;
     --text-muted: #A89080;
     --border-color: rgba(255, 255, 255, 0.3);
@@ -34,7 +34,7 @@
     --accent-color: #C0A0A0;
     --bg-color: #1A1A1A;
     --card-bg: #252525;
-    --text-color: #8E5A65;
+    --text-color: linear-gradient(90deg, #B76E79, #D398C6);
     --text-light: #B0B0B0;
     --text-muted: #808080;
     --border-color: rgba(255, 255, 255, 0.3);
@@ -127,7 +127,7 @@ body {
     overflow: hidden;
     position: relative;
     box-shadow: 0 20px 60px rgba(160, 104, 114, 0.35);
-    /* ❌ perspective: 1000px; ← SİLİNDİ */
+    
 }
 
 .card-inner {
@@ -135,8 +135,7 @@ body {
     height: 100%;
     position: absolute;
     inset: 0;
-    /* ❌ transform-style: preserve-3d; ← SİLİNDİ */
-    /* ❌ transition: transform... ← SİLİNDİ */
+    
     transition: opacity 0.3s ease;
 }
 
@@ -146,7 +145,6 @@ body {
 .card-front {
     position: absolute;
     inset: 0;
-    /* ❌ backface-visibility: hidden; ← SİLİNDİ */
     border-radius: 18px;
     overflow: hidden;
     transition: opacity 0.3s ease;
@@ -166,8 +164,7 @@ body {
 .card-back {
     position: absolute;
     inset: 0;
-    /* ❌ backface-visibility: hidden; ← SİLİNDİ */
-    /* ❌ transform: rotateY(180deg); ← SİLİNDİ */
+  
     border-radius: 18px;
     overflow: hidden;
     transition: opacity 0.3s ease;
@@ -258,7 +255,7 @@ body {
 .mini-btn:hover {
     transform: translateY(-3px);
     box-shadow: 0 6px 20px rgba(211, 152, 198, 0.5);
-    background: linear-gradient(90deg, #B76E79, #D398C6);
+    background: var(--text-color);
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -327,7 +324,7 @@ body {
 .quick-link:hover {
     transform: translateY(-3px);
     box-shadow: 0 6px 20px rgba(211, 152, 198, 0.5);
-    background: linear-gradient(90deg, #B76E79, #D398C6);
+    background: var(--text-color);
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -366,7 +363,7 @@ body {
 }
 
 .back-flip-btn:hover i {
-    background: linear-gradient(90deg, #B76E79, #D398C6);
+    background: var(--text-color);
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
